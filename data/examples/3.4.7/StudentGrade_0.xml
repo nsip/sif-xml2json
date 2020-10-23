@@ -1,0 +1,16 @@
+<StudentGrade RefId="359D7510-1AD0-A9D7-A8C3-DAD0A85103A2">
+    <StudentPersonalRefId>A137D78A-E00B-C744-EF90-F2871CEB90A2
+    </StudentPersonalRefId>
+    <SchoolInfoRefId>B237D78A-E00B-C744-EF90-F2871CEB91A2
+    </SchoolInfoRefId>
+    <Grade>
+        <Percentage>79
+        </Percentage>
+        <Numeric>3.0
+        </Numeric>
+        <Letter>C
+        </Letter>
+        <Narrative>Johnny is only achieving average performance.
+        </Narrative>
+    </Grade>
+</StudentGrade>

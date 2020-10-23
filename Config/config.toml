@@ -1,0 +1,30 @@
+Service = "[PRJ]"
+Log = "~/.[s]/log/[DATE].log"
+Version = "[VER]"
+
+[SIF]
+  DefaultVer = "3.4.7"
+
+[Loggly]
+  Token = "54290728-93e0-425a-a49c-c9e834288026"
+
+[WebService]
+  Port = 1324
+
+[Route]
+  Help = "/"
+  ToJSON = "/[s]/[v]/2json"
+  ToSIF = "/[s]/[v]/2sif"
+
+[NATS]
+  Timeout = 500
+  URL = "nats://192.168.78.130:4222"
+  Subject = "SIF-XML2JSON"
+
+[Server]
+  Port = "[port]"
+  Protocol = "http"
+  IP = "[IP]"
+
+[Access]
+  Timeout = 10

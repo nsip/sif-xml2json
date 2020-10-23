@@ -1,0 +1,18 @@
+<WellbeingPersonLink RefId="2FFB63B4-CFEF-4820-8501-E7D1E54555CB">
+    <WellbeingEventRefId>D3E34B35-9D75-101A-8C3D-00AA001A1688
+    </WellbeingEventRefId>
+    <WellbeingResponseRefId>E6E34B35-9D75-101A-8C3D-00AA001A1700
+    </WellbeingResponseRefId>
+    <GroupId>Inv0009
+    </GroupId>
+    <PersonRefId SIF_RefObject="StudentPersonal">D3E34B35-9D75-101A-8C3D-00AA001A1652
+    </PersonRefId>
+    <HowInvolved>Instigator
+    </HowInvolved>
+    <FollowUpActionList>
+        <FollowUpAction>
+            <FollowUpDetails>Parent's notified
+            </FollowUpDetails>
+        </FollowUpAction>
+    </FollowUpActionList>
+</WellbeingPersonLink>

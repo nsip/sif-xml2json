@@ -1,0 +1,20 @@
+<SchoolPrograms RefId="D3E34B35-9D75-101A-8C3D-00AA001A1652">
+    <SchoolInfoRefId>73648462-8886-24AA-5294-BC6380173276
+    </SchoolInfoRefId>
+    <SchoolYear>2009
+    </SchoolYear>
+    <SchoolProgramList>
+        <Program>
+            <Category>01
+            </Category>
+            <Type>Steiner program
+            </Type>
+        </Program>
+        <Program>
+            <Category>01
+            </Category>
+            <Type>Tournament of minds
+            </Type>
+        </Program>
+    </SchoolProgramList>
+</SchoolPrograms>

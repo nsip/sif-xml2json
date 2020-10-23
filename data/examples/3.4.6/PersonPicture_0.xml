@@ -1,0 +1,30 @@
+<PersonPicture RefId="D3E34B35-9D75-101A-8C3D-00AA001A1652">
+    <ParentObjectRefId SIF_RefObject="StudentPersonal">AA648462-8886-24AA-5294-BC638017320B
+    </ParentObjectRefId>
+    <SchoolYear>2007
+    </SchoolYear>
+    <PictureSource Type="01">http://www.schoolsite.com/pictures/2007/1234.jpg 
+    </PictureSource>
+    <OKToPublish>Y
+    </OKToPublish>
+    <PublishingPermissionList>
+        <PublishingPermission>
+            <PermissionCategory>OKPrintedMaterial
+            </PermissionCategory>
+            <PermissionValue>Y
+            </PermissionValue>
+        </PublishingPermission>
+        <PublishingPermission>
+            <PermissionCategory>OKOnlineMaterial
+            </PermissionCategory>
+            <PermissionValue>Y
+            </PermissionValue>
+        </PublishingPermission>
+        <PublishingPermission>
+            <PermissionCategory>OKMediaRelease
+            </PermissionCategory>
+            <PermissionValue>U
+            </PermissionValue>
+        </PublishingPermission>
+    </PublishingPermissionList>
+</PersonPicture>

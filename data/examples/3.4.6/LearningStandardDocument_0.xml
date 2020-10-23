@@ -1,0 +1,67 @@
+<LearningStandardDocument RefId="A5A575C7-8917-5101-B8E7-F08ED123A823">
+    <Title>Australian National Curriculum: History
+    </Title>
+    <Description>
+            AIMS: The aim of the History curriculum is to instil in students, an appreciation in the diversity of the past and how they inform current developments etc etc.
+RATIONALE: History is essential for an informed citizenry and has always been a cornerstone of education.
+    
+    </Description>
+    <Source>National
+    </Source>
+    <Organizations>
+        <Organization>ACARA
+        </Organization>
+    </Organizations>
+    <Authors>
+        <Author>Joe Bloggs
+        </Author>
+    </Authors>
+    <OrganizationContactPoint>http://www.acara.edu.au
+    </OrganizationContactPoint>
+    <SubjectAreas>
+        <ACStrandSubjectArea>
+            <ACStrand>H
+            </ACStrand>
+            <SubjectArea>
+                <Code>Hist
+                </Code>
+                <OtherCodeList>
+                    <OtherCode Codeset="Text">History
+                    </OtherCode>
+                </OtherCodeList>
+            </SubjectArea>
+        </ACStrandSubjectArea>
+    </SubjectAreas>
+    <DocumentStatus>Adopted
+    </DocumentStatus>
+    <DocumentDate>2010-04-15
+    </DocumentDate>
+    <LocalAdoptionDate>2011-01-06
+    </LocalAdoptionDate>
+    <EndOfLifeDate>2011-04-15
+    </EndOfLifeDate>
+    <Copyright>
+        <Date>2010-06-05
+        </Date>
+        <Holder>ACARA
+        </Holder>
+    </Copyright>
+    <YearLevels>
+        <YearLevel>
+            <Code>11
+            </Code>
+        </YearLevel>
+        <YearLevel>
+            <Code>12
+            </Code>
+        </YearLevel>
+    </YearLevels>
+    <RepositoryDate>2011-04-15
+    </RepositoryDate>
+    <LearningStandardItemRefId>667A87E2-1B4B-9470-CE61-568576DF921E
+    </LearningStandardItemRefId>
+    <RelatedLearningStandards>
+        <LearningStandardDocumentRefId>B87A87E2-1B4B-9470-CE61-568576DF921E
+        </LearningStandardDocumentRefId>
+    </RelatedLearningStandards>
+</LearningStandardDocument>

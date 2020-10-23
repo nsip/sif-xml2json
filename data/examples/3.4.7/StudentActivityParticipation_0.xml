@@ -1,0 +1,18 @@
+<StudentActivityParticipation RefId="9ECC9683-0E02-406F-926C-1C4D3542D122">
+    <StudentPersonalRefId>646C5D4A-C829-4886-A02B-971695C7BC06
+    </StudentPersonalRefId>
+    <StudentActivityInfoRefId>6472B261-0947-583A-463D-BB345291B001
+    </StudentActivityInfoRefId>
+    <SchoolYear>2009
+    </SchoolYear>
+    <ParticipationComment>First year of participation
+    </ParticipationComment>
+    <StartDate>2008-09-01
+    </StartDate>
+    <Role>Team member
+    </Role>
+    <RecognitionList>
+        <Recognition>0750
+        </Recognition>
+    </RecognitionList>
+</StudentActivityParticipation>

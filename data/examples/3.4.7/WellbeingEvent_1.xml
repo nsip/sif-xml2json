@@ -1,0 +1,28 @@
+<WellbeingEvent RefId="2FFB63B4-CFEF-4820-8501-E7D1E54555CB">
+    <StudentPersonalRefId>D3E34B35-9D75-101A-8C3D-00AA001A1652
+    </StudentPersonalRefId>
+    <SchoolInfoRefId>CA285746-359D-7510-1A8C-36432A901A16
+    </SchoolInfoRefId>
+    <EventId>Yard-10
+    </EventId>
+    <WellbeingEventNotes>Incident relates to School Yard accident.
+    </WellbeingEventNotes>
+    <WellbeingEventCategoryClass>D
+    </WellbeingEventCategoryClass>
+    <WellbeingEventCategoryList>
+        <WellbeingEventCategory>
+            <EventCategory>M5
+            </EventCategory>
+            <WellbeingEventSubCategoryList>
+                <WellbeingEventSubCategory>M5-a
+                </WellbeingEventSubCategory>
+            </WellbeingEventSubCategoryList>
+        </WellbeingEventCategory>
+    </WellbeingEventCategoryList>
+    <ReportingStaffRefId>3FFB63B4-CFEF-4820-8501-E7D1E54555CB
+    </ReportingStaffRefId>
+    <WellbeingEventDate>2017-11-01
+    </WellbeingEventDate>
+    <WellbeingEventTimePeriod>AM
+    </WellbeingEventTimePeriod>
+</WellbeingEvent>

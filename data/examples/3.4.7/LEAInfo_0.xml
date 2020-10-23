@@ -1,0 +1,56 @@
+<LEAInfo RefId="D3E34B35-9D75-101A-8C3D-00AA001A1652">
+    <LocalId>EMR
+    </LocalId>
+    <StateProvinceId>EMR
+    </StateProvinceId>
+    <CommonwealthId>4215750
+    </CommonwealthId>
+    <LEAName>Eastern Metro School District
+    </LEAName>
+    <LEAURL>http://www.EMR.vic.edu.au
+    </LEAURL>
+    <EducationAgencyType>
+        <Code>01
+        </Code>
+    </EducationAgencyType>
+    <LEAContactList>
+        <LEAContact>
+            <PublishInDirectory>Y
+            </PublishInDirectory>
+            <ContactInfo>
+                <Name Type="LGL">
+                    <FamilyName>Smith
+                    </FamilyName>
+                    <GivenName>Theo
+                    </GivenName>
+                    <FullName>Theo Smith
+                    </FullName>
+                </Name>
+                <PositionTitle>Superintendent
+                </PositionTitle>
+                <EmailList>
+                    <Email Type="01">drseuss@edumail.vic.edu.au
+                    </Email>
+                </EmailList>
+                <PhoneNumberList>
+                    <PhoneNumber Type="0096">
+                        <Number>(03) 9745 7455
+                        </Number>
+                    </PhoneNumber>
+                </PhoneNumberList>
+            </ContactInfo>
+        </LEAContact>
+    </LEAContactList>
+    <PhoneNumberList>
+        <PhoneNumber Type="0096">
+            <Number>(03) 9745 7455
+            </Number>
+        </PhoneNumber>
+    </PhoneNumberList>
+    <OperationalStatus>O
+    </OperationalStatus>
+    <JurisdictionLowerHouse>Unknown
+    </JurisdictionLowerHouse>
+    <SLA>205801452
+    </SLA>
+</LEAInfo>

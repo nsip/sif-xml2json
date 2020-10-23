@@ -1,0 +1,18 @@
+<FinancialAccount RefId="EEC8FC12-8D2C-4EE3-94A8-6C5395024EDE">
+    <LocalId>89001
+    </LocalId>
+    <AccountNumber>9990001
+    </AccountNumber>
+    <Name>Purchased Foods
+    </Name>
+    <Description>Purchased Foods
+    </Description>
+    <ClassType>Asset
+    </ClassType>
+    <AccountCode>001-002-0034
+    </AccountCode>
+    <CreationDate>2003-01-01
+    </CreationDate>
+    <CreationTime>04:32:23-08:00
+    </CreationTime>
+</FinancialAccount>

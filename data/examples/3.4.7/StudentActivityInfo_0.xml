@@ -1,0 +1,42 @@
+<StudentActivityInfo RefId="6472B261-0947-583A-463D-BB345291B001">
+    <Title>Book Club
+    </Title>
+    <Description>Group of middle school students promoting reading
+    </Description>
+    <StudentActivityType>
+        <Code>6011
+        </Code>
+        <OtherCodeList>
+            <OtherCode Codeset="Local">MBook
+            </OtherCode>
+        </OtherCodeList>
+    </StudentActivityType>
+    <StudentActivityLevel>Middle School
+    </StudentActivityLevel>
+    <YearLevels>
+        <YearLevel>
+            <Code>5
+            </Code>
+        </YearLevel>
+        <YearLevel>
+            <Code>6
+            </Code>
+        </YearLevel>
+        <YearLevel>
+            <Code>7
+            </Code>
+        </YearLevel>
+        <YearLevel>
+            <Code>8
+            </Code>
+        </YearLevel>
+    </YearLevels>
+    <CurricularStatus>0750
+    </CurricularStatus>
+    <Location Type="Classroom">
+        <LocationName>Beaconhills Middle School Library
+        </LocationName>
+        <LocationRefId SIF_RefObject="RoomInfo">94758261-0947-583A-CEB2-BB345291BAAA
+        </LocationRefId>
+    </Location>
+</StudentActivityInfo>

@@ -1,0 +1,20 @@
+<ResourceBooking RefId="B5739375-800A-C4CC-6385-0BB2754114AA">
+    <ResourceRefId SIF_RefObject="LearningResource">B7A34E56-1C97-345C-0A4E-11BB112B2753
+    </ResourceRefId>
+    <ResourceLocalId>ZXY789
+    </ResourceLocalId>
+    <StartDateTime>2011-01-01T16:30:00
+    </StartDateTime>
+    <FinishDateTime>2011-01-01T17:30:00
+    </FinishDateTime>
+    <FromPeriod>3
+    </FromPeriod>
+    <ToPeriod>3
+    </ToPeriod>
+    <Booker>98157AA0-13BA-8C3D-00AA-012B359D7512
+    </Booker>
+    <ScheduledActivityRefId>A75A0010-1A8C-301D-02E3-A05B359D0A00
+    </ScheduledActivityRefId>
+    <KeepOld>false
+    </KeepOld>
+</ResourceBooking>

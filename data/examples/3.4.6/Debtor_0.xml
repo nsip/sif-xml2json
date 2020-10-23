@@ -1,0 +1,26 @@
+<Debtor RefId="B5739375-800A-C4CC-6385-0BB2754114AA">
+    <BilledEntity SIF_RefObject="StudentContactPersonal">8B231144-301C-4D3B-95D4-8BB74C866AE1
+    </BilledEntity>
+    <AddressList>
+        <Address Type="0123" Role="2382">
+            <Street>
+                <Line1>23 E. 43rd St.
+                </Line1>
+            </Street>
+            <City>Chicago
+            </City>
+            <StateProvince>IL
+            </StateProvince>
+            <Country>8104
+            </Country>
+            <PostalCode>60611
+            </PostalCode>
+        </Address>
+    </AddressList>
+    <BillingName>Flintstone Family Trust
+    </BillingName>
+    <BillingNote>Do not invoice under parent's real name.
+    </BillingNote>
+    <Discount>10.0
+    </Discount>
+</Debtor>
