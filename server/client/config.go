@@ -1,35 +1,18 @@
-package cfg
+package client
 
 import "github.com/cdutwhu/gonfig"
 
-// Config : AUTO Created From /home/qmiao/Desktop/sif-xml2json/Config/config.toml
+// Config : AUTO Created From /home/qmiao/Desktop/sif-xml2json/server/client/config.toml
 type Config struct {
-	Service interface{}
-	Log string
-	Version interface{}
-	SIF struct {
-		DefaultVer string
-	}
-	Loggly struct {
-		Token string
-	}
-	WebService struct {
-		Port int
-	}
+	Service string
 	Route struct {
+		Convert string
 		Help string
-		ToJSON string
-		ToSIF string
-	}
-	NATS struct {
-		Timeout int
-		URL string
-		Subject string
 	}
 	Server struct {
-		Port interface{}
+		Port int
 		Protocol string
-		IP interface{}
+		IP string
 	}
 	Access struct {
 		Timeout int

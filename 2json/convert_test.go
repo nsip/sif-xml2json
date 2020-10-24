@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"testing"
 	"time"
+
+	errs "github.com/nsip/sif-xml2json/err-const"
 )
 
 func TestXMLRoot(t *testing.T) {
@@ -48,7 +50,7 @@ func TestXML2JSON(t *testing.T) {
 	dir := `../data/examples/` + ver
 	files, err := ioutil.ReadDir(dir)
 	failOnErr("%v", err)
-	failOnErrWhen(len(files) == 0, "%v", fEf("FILE_NOT_FOUND"))
+	failOnErrWhen(len(files) == 0, "%v", errs.FILE_NOT_FOUND)
 	syncParallel(1, x2j, files, dir, ver) // multi threads may be error.
 	fPln("OK")
 }

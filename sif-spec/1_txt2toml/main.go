@@ -7,10 +7,10 @@ import (
 	"strings"
 
 	"github.com/cdutwhu/debog/fn"
+	"github.com/cdutwhu/gonfig/strugen"
 	"github.com/cdutwhu/gotil/io"
 	"github.com/cdutwhu/gotil/rflx"
 	"github.com/cdutwhu/gotil/str"
-	"github.com/cdutwhu/gonfig/strugen"
 )
 
 var (
@@ -83,7 +83,7 @@ func PrintGrp4Cfg(m map[string][]string, attr string) (toml string) {
 }
 
 // GenTomlAndGoSrc :
-func GenTomlAndGoSrc(SIFSpecPath, outDir string) {
+func GenTomlAndGoSrc(specPath, outDir string) {
 
 	const (
 		SEP     = "/"
@@ -102,7 +102,7 @@ func GenTomlAndGoSrc(SIFSpecPath, outDir string) {
 		SIFVer      string
 	)
 
-	bytes, err := ioutil.ReadFile(SIFSpecPath)
+	bytes, err := ioutil.ReadFile(specPath)
 	failOnErr("%v", err)
 
 	for _, line := range sSplit(string(bytes), "\n") {

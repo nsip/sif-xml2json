@@ -5,8 +5,8 @@ shopt -s extglob
 
 ORIPATH=`pwd`
 
-# cd ./Server/ && ./clean.sh && cd $ORIPATH && echo "Server clean"
-cd ./SIFSpec/ && ./clean.sh && cd $ORIPATH && echo "SIFSpec clean"
+cd ./server/ && ./clean.sh && cd $ORIPATH && echo "server clean"
+cd ./sif-spec/ && ./clean.sh && cd $ORIPATH && echo "sif-spec clean"
 
 rm -rf ./data/output/
 rm -f ./*.json ./*.xml ./go.sum

@@ -1,10 +1,12 @@
 package cvt2json
 
 import (
+	"fmt"
+
 	xj "github.com/basgys/goxml2json"
-	cfg "github.com/nsip/sif-xml2json/Config/cfg"
-	sif346 "github.com/nsip/sif-xml2json/SIFSpec/3.4.6"
-	sif347 "github.com/nsip/sif-xml2json/SIFSpec/3.4.7"
+	cfg "github.com/nsip/sif-xml2json/config/cfg"
+	sif346 "github.com/nsip/sif-xml2json/sif-spec/3.4.6"
+	sif347 "github.com/nsip/sif-xml2json/sif-spec/3.4.7"
 )
 
 func selBytesOfJSON(ver, ruleType, object string, indices ...int) (rt []string, err error) {
@@ -30,7 +32,7 @@ func selBytesOfJSON(ver, ruleType, object string, indices ...int) (rt []string, 
 			mBytes = sif347.JSON_NUM
 		}
 	default:
-		err = fEf("Error: No SIF Spec @ Version [%s]", ver)
+		err = fmt.Errorf("Error: No SIF Spec @ Version [%s]", ver)
 		warner("%v", err)
 		return
 	}
@@ -61,7 +63,7 @@ func enforceCfg(json string, lsJSONCfg ...string) string {
 
 // XML2JSON : if [sifver] is "", DefaultSIFVer applies
 func XML2JSON(xml, sifver string, enforced bool, subobj ...string) (string, string, error) {
-	cfgAll := cfg.NewCfg("Config", nil, "./Config/config.toml", "../Config/config.toml").(*cfg.Config)
+	cfgAll := cfg.NewCfg("Config", nil, "./config/config.toml", "../config/config.toml").(*cfg.Config)
 
 	jsonBuf, err := xj.Convert(
 		sNewReader(xml),
