@@ -101,21 +101,20 @@ func rest(fn, url string, args *Args, chStr chan string, chErr chan error) {
 		if Resp, Err = http.Get(url); Err != nil {
 			goto ERR_RET
 		}
-
 	case "Convert":
 		if args == nil {
 			Err = errs.PARAM_INVALID
 			goto ERR_RET
 		}
-		str := string(args.Data)
-		if !isXML(str) {
+		if !isXML(string(args.Data)) {
 			Err = errs.PARAM_INVALID_XML
 			goto ERR_RET
-
 		}
 		if Resp, Err = http.Post(url, "application/json", bytes.NewBuffer(args.Data)); Err != nil {
 			goto ERR_RET
 		}
+	default:
+		panic("Shouldn't be here")
 	}
 
 	if Resp == nil {

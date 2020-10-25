@@ -46,11 +46,12 @@
    `IP` : your sif-xml2json server running machine ip.
    `Port`: set in 'config.toml' file, default is 1324, can be changed in 'config.toml'.
 
-2. Run `curl -X POST IP:Port/Service/Version/2json?sv=3.4.7 -d @path/to/your/sif.xml`
-   to convert a XML SIF to JSON.
+2. Run `curl -X POST IP:Port/Service/Version/convert?sv=3.4.7 -d @path/to/your/sif.xml`
+   to convert a SIF.xml to SIF.json
 
    `IP` : your sif-xml2json server running machine ip.
    `Port`: Get from server's 'config.toml'-[WebService]-[Port], default is 1324.
    `Service`: service name. Get from server's 'config.toml'-[Service].
    `Version`: service version. Get from server's 'config.toml'-[Version].
    `sv`: SIF Spec Version, available 3.4.6 & 3.4.7
+   `wrap`: if there is a single wrapper (non-sif-object root) on upload sif.xml, append param `wrap`.  
