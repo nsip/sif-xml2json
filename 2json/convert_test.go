@@ -34,7 +34,7 @@ func x2j(dim int, tid int, done chan int, params ...interface{}) {
 		json, sv, err := XML2JSON(string(bytes), ver, false)
 		fPln("end:", obj, sv, err)
 		if json != "" {
-			mustWriteFile(fSf("../data/output/%s/json/%s.json", sv, obj), []byte(json))
+			mustWriteFile(fSf("../data/output/%s/%s.json", sv, obj), []byte(json))
 		}
 	}
 }

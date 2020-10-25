@@ -9,8 +9,8 @@ W=`tput sgr0`
 
 printf "\n"
 
-ip="192.168.31.168:1324/"     ### 
-base=$ip"sif-xml2json/0.0.0/" ###
+ip="192.168.31.168:1324/"      ### 
+base=$ip"sif-xml2json/v0.1.0/" ###
 
 title='SIF-XML2JSON all API Paths'
 url=$ip
@@ -33,7 +33,7 @@ SIFDir=./data/examples/$sv/*
 for f in $SIFDir
 do    
     title='Convert Test @ '$f
-    url=$base"convert?sv=$sv"    
+    url=$base"convert?sv=$sv"    ###
     file="@"$f
     scode=`curl -X POST $url -d $file -w "%{http_code}" -s -o /dev/null`
     if [ $scode -ne 200 ]; then
@@ -44,7 +44,7 @@ do
     fi
 
     jsonname=`basename $f .xml`.json
-    outdir=./data/output/$sv/json/
+    outdir=./data/output/$sv/
     mkdir -p $outdir
     outfile=$outdir"$jsonname"
     echo "curl -X POST $url -d $file"

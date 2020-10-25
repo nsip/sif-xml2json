@@ -19,6 +19,7 @@ var (
 	fSf           = fmt.Sprintf
 	sJoin         = strings.Join
 	sReplace      = strings.Replace
+	sReplaceAll   = strings.ReplaceAll
 	sTrimRight    = strings.TrimRight
 	struct2Map    = rflx.Struct2Map
 	mapKeys       = rflx.MapKeys
@@ -40,6 +41,7 @@ type Args struct {
 	Data   []byte
 	Ver    string
 	ToNATS bool
+	Wrap   bool
 }
 
 func initMapFnURL(protocol, ip string, port int, route interface{}) (map[string]string, []string) {

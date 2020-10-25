@@ -193,7 +193,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 			status  = http.StatusOK
 			Ret     = ""
 			RetSB   strings.Builder
-			results []reflect.Value
+			results []reflect.Value // for 'jaegertracing.TraceFunction'
 		)
 
 		logGrp.Do("Parsing Params")
@@ -210,7 +210,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 
 		logGrp.Do("Reading Request Body")
 		bytes, err := ioutil.ReadAll(c.Request().Body)
-		sifstr, root, cont, lvl0 := "", "", "", ""
+		xstr, root, cont, lvl0 := "", "", "", ""
 		sifObjNames, sifObjGrp, mObjContGrp := []string{}, []string{}, make(map[string][]string)
 
 		if err != nil {
@@ -219,24 +219,30 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 			RetSB.WriteString(err.Error() + " @Request Body")
 			goto RET
 		}
-		if sifstr = string(bytes); len(sifstr) == 0 {
+		if xstr = string(bytes); len(xstr) == 0 {
 			status = http.StatusBadRequest
 			RetSB.Reset()
 			RetSB.WriteString("HTTP_REQBODY_EMPTY @Request Body")
 			goto RET
 		}
-		if !isXML(sifstr) {
+		if !isXML(xstr) {
 			status = http.StatusBadRequest
 			RetSB.Reset()
 			RetSB.WriteString("PARAM_INVALID_XML @Request Body")
 			goto RET
 		}
 
+		/// DEBUG ///
+		// if sContains(xstr, "A5A575C7-8917-5101-B8E7-F08ED123A823") {
+		// 	ioutil.WriteFile("./debug.xml", []byte(xstr), 0666)
+		// }
+		/// DEBUG ///
+
 		///
 		// ** if wrapped, break and handle each SIF object ** //
 		///
-		root, lvl0, cont = xt.Lvl0(sifstr)
-		sifObjNames, sifObjGrp = []string{root}, []string{sifstr}
+		root, lvl0, cont = xt.Lvl0(xstr)
+		sifObjNames, sifObjGrp = []string{root}, []string{xstr}
 
 		if wrapped {
 			sifObjNames, sifObjGrp = xt.BreakCont(cont)
@@ -251,26 +257,42 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		///
 
 		for i, objsif := range sifObjGrp {
+			obj := sifObjNames[i]
 			// logGrp.Do("cvt.XML2JSON")
 
-			// Ret, svUsed, err = cvt.XML2JSON(Cfg.Cfg2JSON, objsif, sv, false)
+			/// DEBUG ///
+			// if sContains(obj, "Document") {
+			// 	ioutil.WriteFile("./debug.xml", []byte(objsif), 0666)
+			// }
+			/// DEBUG ///
+
+			////////// ------------------- //////////
+
+			// objson, svApplied, err := cvt.XML2JSON(objsif, sv, false)
+			// if err != nil {
+			// 	status = http.StatusInternalServerError
+			// 	RetSB.Reset()
+			// 	RetSB.WriteString(err.Error())
+			// 	goto RET
+			// }
+			// logGrp.Do(obj + ": " + svApplied + " applied")
+
+			////////// ------------------- //////////
 
 			// Trace [cvt.XML2JSON], uses (variadic parameter), must wrap it to [jaegertracing.TraceFunction]
 			results = jaegertracing.TraceFunction(c, func() (string, string, error) {
 				return cvt.XML2JSON(objsif, sv, false)
 			})
-
 			objson := results[0].Interface().(string)
-
 			if !results[2].IsNil() {
 				status = http.StatusInternalServerError
 				RetSB.Reset()
 				RetSB.WriteString(results[2].Interface().(error).Error())
 				goto RET
 			}
-
-			obj := sifObjNames[i]
 			logGrp.Do(obj + ": " + results[1].Interface().(string) + " applied")
+
+			////////// ------------------- //////////
 
 			if wrapped {
 				_, jc := jt.SglEleBlkCont(objson)
@@ -326,105 +348,3 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		return c.String(status, sTrimRight(Ret, "\n")+"\n") // If already JSON String, so return String
 	})
 }
-
-// 	// -------------------------------------------------------------------------------- //
-// 	// -------------------------------------------------------------------------------- //
-
-// 	path = route.ToSIF
-// 	e.POST(path, func(c echo.Context) error {
-// 		defer misc.TrackTime(time.Now())
-// 		defer mMtx[path].Unlock()
-// 		mMtx[path].Lock()
-
-// 		var (
-// 			status  = http.StatusOK
-// 			Ret     string
-// 			RetSB   strings.Builder
-// 			results []reflect.Value
-// 		)
-
-// 		logGrp.Do("Parsing Params")
-// 		pvalues, sv, wrapped := c.QueryParams(), "", false
-// 		if ok, v := url1Value(pvalues, 0, "sv"); ok {
-// 			sv = v
-// 		}
-// 		if ok, w := url1Value(pvalues, 0, "wrap"); ok && w != "false" {
-// 			wrapped = true
-// 		}
-
-// 		logGrp.Do("Reading Body")
-// 		bytes, err := ioutil.ReadAll(c.Request().Body)
-// 		jsonstr, root, cont, out4ret := "", "", "", ""
-// 		jsonObjNames, jsonContGrp := []string{}, []string{}
-
-// 		if err != nil {
-// 			status = http.StatusInternalServerError
-// 			RetSB.Reset()
-// 			RetSB.WriteString(err.Error() + " @Request Body")
-// 			goto RET
-// 		}
-// 		if jsonstr = string(bytes); len(jsonstr) == 0 {
-// 			status = http.StatusBadRequest
-// 			RetSB.Reset()
-// 			RetSB.WriteString("HTTP_REQBODY_EMPTY @Request Body")
-// 			goto RET
-// 		}
-// 		if !isJSON(jsonstr) {
-// 			status = http.StatusBadRequest
-// 			RetSB.Reset()
-// 			RetSB.WriteString("PARAM_INVALID_JSON @Request Body")
-// 			goto RET
-// 		}
-
-// 		///
-// 		// ** if wrapped, break and handle each SIF object ** //
-// 		///
-// 		root, cont = JSONBlkCont(jsonstr) // if wrapped : => "sif", { "Activity" ... }
-// 		jsonObjNames, jsonContGrp = []string{root}, []string{cont}
-// 		if wrapped {
-// 			out4ret = JSON2XML(JSONBlkMake(root, "~~~", false))
-// 			jsonObjNames, jsonContGrp = JSONBreakBlkContV2(cont) // break array to single duplicated objects
-// 		}
-// 		///
-
-// 		for i, objson := range jsonContGrp {
-// 			// logGrp.Do("cvt.JSON2SIF")
-
-// 			objson = JSONBlkMake(jsonObjNames[i], objson, false)
-
-// 			// Ret, svUsed, err := cvt2sif.JSON2SIF(Cfg.Cfg2SIF, objson, sv)
-
-// 			// Trace [cvt2sif.JSON2SIF]
-// 			results = jaegertracing.TraceFunction(c, cvt2sif.JSON2SIF, objson, sv)
-
-// 			objsif := results[0].Interface().(string)
-
-// 			if !results[2].IsNil() {
-// 				status = http.StatusInternalServerError
-// 				RetSB.Reset()
-// 				RetSB.WriteString(results[2].Interface().(error).Error())
-// 				goto RET
-// 			}
-
-// 			obj := jsonObjNames[i]
-// 			logGrp.Do(obj + ":" + results[1].Interface().(string) + " applied")
-
-// 			RetSB.WriteString(objsif)
-// 			RetSB.WriteString("\n")
-// 		}
-
-// 	RET:
-// 		if status != http.StatusOK {
-// 			Ret = RetSB.String()
-// 			warnGrp.Do(Ret + " --> Failed")
-// 		} else {
-// 			if wrapped {
-// 				Ret = sReplaceAll(out4ret, "~~~", RetSB.String())
-// 			} else {
-// 				Ret = RetSB.String()
-// 			}
-// 			logGrp.Do("--> Finish JSON2SIF")
-// 		}
-// 		return c.String(status, sTrimRight(Ret, "\n")+"\n")
-// 	})
-// }

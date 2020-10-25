@@ -48,10 +48,9 @@ func selBytesOfJSON(ver, ruleType, object string, indices ...int) (rt []string, 
 
 // enforceCfg : LIST config must be from low Level to high level
 func enforceCfg(json string, lsJSONCfg ...string) string {
-
 	for _, jsoncfg := range lsJSONCfg {
 		// make sure [jsoncfg] is formatted; Otherwise, do Fmt firstly
-		// jsoncfg = fmtJSON(jsoncfg, 2)
+		// jsoncfg = fmtJSON(jsoncfg, "  ")
 
 		json, _ = newJKV(json, "", false).Unfold(0, newJKV(jsoncfg, "", false))
 		// make sure there is no double "[" OR "]"

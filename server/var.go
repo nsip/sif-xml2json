@@ -29,6 +29,7 @@ var (
 	sNewReader       = strings.NewReader
 	sHasSuffix       = strings.HasSuffix
 	sHasPrefix       = strings.HasPrefix
+	sContains        = strings.Contains
 	rxMustCompile    = regexp.MustCompile
 	failOnErr        = fn.FailOnErr
 	failOnErrWhen    = fn.FailOnErrWhen

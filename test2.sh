@@ -9,8 +9,8 @@ W=`tput sgr0`
 
 printf "\n"
 
-ip="192.168.31.168:1324/"     ###
-base=$ip"sif-xml2json/0.0.0/" ###
+ip="192.168.31.168:1324/"      ###
+base=$ip"sif-xml2json/v0.1.0/" ###
 
 title='SIF-XML2JSON all API Paths'
 url=$ip
@@ -31,7 +31,7 @@ sv=3.4.7
 
 SIFFile=./data/examples/siftest347.xml
 title='Convert Test @ '$SIFFile
-url=$base"convert?sv=$sv&wrap"
+url=$base"convert?sv=$sv&wrap"   ###
 file="@"$SIFFile
 scode=`curl -X POST $url -d $file -w "%{http_code}" -s -o /dev/null`
 if [ $scode -ne 200 ]; then

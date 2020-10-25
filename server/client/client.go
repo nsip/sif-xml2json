@@ -33,7 +33,7 @@ func DoWithTrace(ctx context.Context, config, fn string, args *Args) (string, er
 	return DO(config, fn, args)
 }
 
-// DO : fn ["Help", "ToJSON", "ToSIF"]
+// DO : fn ["Help", "Convert"]
 func DO(config, fn string, args *Args) (string, error) {
 	pCfg := NewCfg("Config", nil)
 	failOnErrWhen(pCfg == nil, "%v", errs.CFG_INIT_ERR)
@@ -68,14 +68,23 @@ func DO(config, fn string, args *Args) (string, error) {
 
 // rest :
 func rest(fn, url string, args *Args, chStr chan string, chErr chan error) {
-	paramV, paramN := "", ""
-	if args != nil && args.Ver != "" {
-		paramV = fSf("sv=%s", args.Ver)
+	pVer, pNats, pWrap := "", "", ""
+	if args != nil {
+		if args.Ver != "" {
+			pVer = fSf("sv=%s", args.Ver)
+		}
+		if args.ToNATS {
+			pNats = fSf("nats")
+		}
+		if args.Wrap {
+			pWrap = fSf("wrap")
+		}
 	}
-	if args != nil && args.ToNATS {
-		paramN = fSf("nats=true")
+
+	url = fSf("%s?%s&%s&%s", url, pVer, pNats, pWrap)
+	for i := 0; i < 16; i++ {
+		url = sReplaceAll(url, "&&", "&") // remove empty params
 	}
-	url = fSf("%s?%s&%s", url, paramV, paramN)
 	url = sReplace(url, "?&", "?", 1)
 	url = sTrimRight(url, "?&")
 
@@ -93,20 +102,16 @@ func rest(fn, url string, args *Args, chStr chan string, chErr chan error) {
 			goto ERR_RET
 		}
 
-	case "ToJSON", "ToSIF":
+	case "Convert":
 		if args == nil {
 			Err = errs.PARAM_INVALID
 			goto ERR_RET
 		}
-
 		str := string(args.Data)
-		if fn == "ToJSON" && !isXML(str) {
+		if !isXML(str) {
 			Err = errs.PARAM_INVALID_XML
 			goto ERR_RET
 
-		} else if fn == "ToSIF" && !isJSON(str) {
-			Err = errs.PARAM_INVALID_JSON
-			goto ERR_RET
 		}
 		if Resp, Err = http.Post(url, "application/json", bytes.NewBuffer(args.Data)); Err != nil {
 			goto ERR_RET

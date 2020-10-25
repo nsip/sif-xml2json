@@ -20,7 +20,7 @@ func TestDO(t *testing.T) {
 	failOnErr("%v", err)
 	str, err = DO(
 		config,
-		"ToJSON",
+		"Convert",
 		&Args{
 			Data:   bytes,
 			Ver:    "3.4.7",
