@@ -4,9 +4,9 @@ import "github.com/cdutwhu/gonfig"
 
 // Config : AUTO Created From /home/qmiao/Desktop/sif-xml2json/config/config.toml
 type Config struct {
-	Version interface{}
 	Log string
 	Service interface{}
+	Version interface{}
 	SIF struct {
 		DefaultVer string
 	}
@@ -26,9 +26,9 @@ type Config struct {
 		Subject string
 	}
 	Server struct {
-		Protocol string
 		IP interface{}
 		Port interface{}
+		Protocol string
 	}
 	Access struct {
 		Timeout int

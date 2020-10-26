@@ -211,7 +211,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		logGrp.Do("Reading Request Body")
 		bytes, err := ioutil.ReadAll(c.Request().Body)
 		xstr, root, cont, lvl0 := "", "", "", ""
-		sifObjNames, sifObjGrp, mObjContGrp := []string{}, []string{}, make(map[string][]string)
+		xmlObjNames, xmlObjGrp, mObjContGrp := []string{}, []string{}, make(map[string][]string)
 
 		if err != nil {
 			status = http.StatusInternalServerError
@@ -242,10 +242,10 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		// ** if wrapped, break and handle each SIF object ** //
 		///
 		root, lvl0, cont = xt.Lvl0(xstr)
-		sifObjNames, sifObjGrp = []string{root}, []string{xstr}
+		xmlObjNames, xmlObjGrp = []string{root}, []string{xstr}
 
 		if wrapped {
-			sifObjNames, sifObjGrp = xt.BreakCont(cont)
+			xmlObjNames, xmlObjGrp = xt.BreakCont(cont)
 			jsonBuf, err := xj.Convert(sNewReader(lvl0))
 			failOnErr("%v", err)
 			lvl0json := jsonBuf.String()
@@ -256,19 +256,19 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		}
 		///
 
-		for i, objsif := range sifObjGrp {
-			obj := sifObjNames[i]
+		for i, xmlObj := range xmlObjGrp {
+			obj := xmlObjNames[i]
 			// logGrp.Do("cvt.XML2JSON")
 
 			/// DEBUG ///
 			// if sContains(obj, "Document") {
-			// 	ioutil.WriteFile("./debug.xml", []byte(objsif), 0666)
+			// 	ioutil.WriteFile("./debug.xml", []byte(xmlObj), 0666)
 			// }
 			/// DEBUG ///
 
 			////////// ------------------- //////////
 
-			// objson, svApplied, err := cvt.XML2JSON(objsif, sv, false)
+			// jsonObj, svApplied, err := cvt.XML2JSON(xmlObj, sv, false)
 			// if err != nil {
 			// 	status = http.StatusInternalServerError
 			// 	RetSB.Reset()
@@ -281,9 +281,9 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 
 			// Trace [cvt.XML2JSON], uses (variadic parameter), must wrap it to [jaegertracing.TraceFunction]
 			results = jaegertracing.TraceFunction(c, func() (string, string, error) {
-				return cvt.XML2JSON(objsif, sv, false)
+				return cvt.XML2JSON(xmlObj, sv, false)
 			})
-			objson := results[0].Interface().(string)
+			jsonObj := results[0].Interface().(string)
 			if !results[2].IsNil() {
 				status = http.StatusInternalServerError
 				RetSB.Reset()
@@ -295,10 +295,10 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 			////////// ------------------- //////////
 
 			if wrapped {
-				_, jc := jt.SglEleBlkCont(objson)
+				_, jc := jt.SglEleBlkCont(jsonObj)
 				mObjContGrp[obj] = append(mObjContGrp[obj], jc)
 			} else {
-				RetSB.WriteString(objson)
+				RetSB.WriteString(jsonObj)
 				RetSB.WriteString("\n")
 			}
 
@@ -312,7 +312,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 					RetSB.WriteString(err.Error() + fSf(" @NATS Connect @Subject: [%s@%s]", url, subj))
 					goto RET
 				}
-				msg, err := nc.Request(subj, []byte(objson), timeout*time.Millisecond)
+				msg, err := nc.Request(subj, []byte(jsonObj), timeout*time.Millisecond)
 				if err != nil {
 					status = http.StatusInternalServerError
 					RetSB.Reset()
