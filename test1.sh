@@ -27,7 +27,7 @@ printf "\n"
 
 # exit 0
 
-sv=3.4.6
+sv=3.4.7
 
 SIFDir=./data/examples/$sv/*
 for f in $SIFDir

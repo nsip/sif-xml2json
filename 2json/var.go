@@ -25,6 +25,7 @@ var (
 	fSf              = fmt.Sprintf
 	sHasPrefix       = strings.HasPrefix
 	sHasSuffix       = strings.HasSuffix
+	sReplace         = strings.Replace
 	sReplaceAll      = strings.ReplaceAll
 	sToLower         = strings.ToLower
 	sTrim            = strings.Trim
@@ -61,4 +62,5 @@ var (
 	rxRB         = rxMustCompile(`\][ \t\r\n]*\]`)
 	rxOneEmpty   = rxMustCompile(`": \{\n([ ]+"-.+": .+,\n)*([ ]+"-.+": .+\n)[ ]+\}`)         // one empty object
 	rxEmptyInArr = rxMustCompile(`[\[,]\n[ ]+\{\n([ ]+"-.+": .+,\n)*([ ]+"-.+": .+\n)[ ]+\}`) // empty object in array
+	rxRawAttr    = rxMustCompile(`"-\w+":\s*`)                                                // raw style from XML attributes
 )

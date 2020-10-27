@@ -125,11 +125,9 @@ func XML2JSON(xml, sifver string, enforced bool, subobj ...string) (string, stri
 
 	// XML empty element(empty text) with Attributes -------------------------------------------
 	emptyPosPair := [][]int{}
-
 	for _, pos := range rxOneEmpty.FindAllStringIndex(json, -1) {
 		emptyPosPair = append(emptyPosPair, []int{pos[0] + 6, pos[0] + 6})
 	}
-
 	for _, pos := range rxEmptyInArr.FindAllStringIndex(json, -1) {
 		remain, offset := json[pos[0]:], 0
 		for i, c := range remain {
@@ -140,9 +138,14 @@ func XML2JSON(xml, sifver string, enforced bool, subobj ...string) (string, stri
 		}
 		emptyPosPair = append(emptyPosPair, []int{pos[0] + offset, pos[0] + offset})
 	}
-
 	const mark = "value" // "#content"
 	json = replByPosGrp(json, emptyPosPair, []string{fSf("\"%s\": \"\",\n", mark)})
+
+	// "-Attribute" => "@Attribute"
+	json = rxRawAttr.ReplaceAllStringFunc(json, func(m string) string {
+		return sReplace(m, `"-`, `"@`, 1)
+	})
+
 	json = fmtJSON(json, "  ")
 	return json, ver, nil
 }
