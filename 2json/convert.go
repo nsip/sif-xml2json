@@ -5,8 +5,8 @@ import (
 
 	xj "github.com/basgys/goxml2json"
 	cfg "github.com/nsip/sif-xml2json/config/cfg"
-	sif346 "github.com/nsip/sif-xml2json/sif-spec/3.4.6"
-	sif347 "github.com/nsip/sif-xml2json/sif-spec/3.4.7"
+	sif346 "github.com/nsip/sif-spec-res/3.4.6"
+	sif347 "github.com/nsip/sif-spec-res/3.4.7"
 )
 
 func selBytesOfJSON(ver, ruleType, object string, indices ...int) (rt []string, err error) {

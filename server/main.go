@@ -283,7 +283,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 			results = jaegertracing.TraceFunction(c, func() (string, string, error) {
 				return cvt.XML2JSON(xmlObj, sv, false)
 			})
-			
+
 			jsonObj := results[0].Interface().(string)
 			if !results[2].IsNil() {
 				status = http.StatusInternalServerError
@@ -339,6 +339,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 				}
 				Ret = RetSB.String()
 				Ret = sTrimRight(Ret, ",") + "}}"
+				Ret = sReplace(Ret, "\"-", "\"@", 1) // wrapper attribute '-' to '@'
 				Ret = jt.Fmt(Ret, "  ")
 			} else {
 				Ret = RetSB.String()

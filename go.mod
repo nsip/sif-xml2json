@@ -7,22 +7,24 @@ require (
 	github.com/cdutwhu/debog v0.2.10
 	github.com/cdutwhu/gonfig v0.0.0-20201023060437-1964b194abe9
 	github.com/cdutwhu/gotil v0.1.8
-	github.com/cdutwhu/json-tool v0.0.0-20201022053104-092fa71fd04c
+	github.com/cdutwhu/json-tool v0.1.6
 	github.com/cdutwhu/n3-util v0.3.11
-	github.com/cdutwhu/xml-tool v0.0.0-20201022020139-d9232965d3c8
+	github.com/cdutwhu/xml-tool v0.1.10
 	github.com/davecgh/go-spew v1.1.1
 	github.com/labstack/echo-contrib v0.9.0
 	github.com/labstack/echo/v4 v4.1.17
 	github.com/mattn/go-colorable v0.1.8 // indirect
-	github.com/nats-io/jwt v1.1.0 // indirect
+	github.com/nats-io/jwt v1.2.0 // indirect
 	github.com/nats-io/nats.go v1.10.0
 	github.com/nats-io/nkeys v0.2.0 // indirect
+	github.com/nsip/sif-spec-res v0.0.2
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/peterbourgon/mergemap v0.0.0-20130613134717-e21c03b7a721
 	github.com/sirupsen/logrus v1.7.0 // indirect
 	github.com/uber/jaeger-client-go v2.25.0+incompatible
 	github.com/uber/jaeger-lib v2.4.0+incompatible // indirect
-	golang.org/x/crypto v0.0.0-20201016220609-9e8e0b390897 // indirect
-	golang.org/x/net v0.0.0-20201026091529-146b70c837a4 // indirect
-	golang.org/x/sys v0.0.0-20201026173827-119d4633e4d1 // indirect
+	golang.org/x/crypto v0.0.0-20201117144127-c1f2f97bffc9 // indirect
+	golang.org/x/net v0.0.0-20201110031124-69a78807bb2b // indirect
+	golang.org/x/sys v0.0.0-20201119102817-f84b799fce68 // indirect
+	golang.org/x/text v0.3.4 // indirect
 )

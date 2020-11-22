@@ -17,13 +17,13 @@ type Config struct {
 		Port int
 	}
 	Route struct {
-		Convert string
 		Help string
+		Convert string
 	}
 	NATS struct {
-		URL string
 		Subject string
 		Timeout int
+		URL string
 	}
 	Server struct {
 		IP interface{}
