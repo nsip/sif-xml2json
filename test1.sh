@@ -16,12 +16,12 @@ title='SIF-XML2JSON all API Paths'
 url=$ip
 scode=`curl --write-out "%{http_code}" --silent --output /dev/null $url`
 if [ $scode -ne 200 ]; then
-    echo "${R}${title}${W}"
+    echo "${R}Error getting root information from ${ip} - ${title}${W}"
     exit 1
 else
-    echo "${G}${title}${W}"
+    echo "${G}Server OK: ${title}${W}"
 fi
-echo "curl $url"
+echo "# Headers: curl $url"
 curl -i $url
 printf "\n"
 
@@ -31,7 +31,7 @@ sv=3.4.7
 
 SIFDir=./data/examples/$sv/*
 for f in $SIFDir
-do    
+do
     title='Convert Test @ '$f
     url=$base"convert?sv=$sv"    ###
     file="@"$f
