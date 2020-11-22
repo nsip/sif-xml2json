@@ -9,7 +9,7 @@ W=`tput sgr0`
 
 printf "\n"
 
-ip="192.168.31.100:1324/"      ### 
+ip="localhost:1324/"      ### 
 base=$ip"sif-xml2json/v0.1.2/" ###
 
 title='SIF-XML2JSON all API Paths'
