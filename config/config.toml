@@ -12,7 +12,7 @@ Token = "54290728-93e0-425a-a49c-c9e834288026"
 Port = 1324
 
 [Route]
-Convert = "/[s]/[v]/convert"
+Convert = "/[s]/[v]"
 Help = "/"
 
 [NATS]

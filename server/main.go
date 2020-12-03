@@ -22,6 +22,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/nats-io/nats.go"
+	sr "github.com/nsip/sif-spec-res"
 	cvt "github.com/nsip/sif-xml2json/2json"
 	cfg "github.com/nsip/sif-xml2json/config/cfg"
 	errs "github.com/nsip/sif-xml2json/err-const"
@@ -132,6 +133,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		fullIP = localIP() + fSf(":%d", port)
 		route  = Cfg.Route
 		mMtx   = initMutex(&Cfg.Route)
+		vers   = sr.GetAllVer("v", "")
 	)
 
 	defer e.Start(fSf(":%d", port))
@@ -151,10 +153,10 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 			// 	fSf("wget -O config.toml %-40s-> %s\n", fullIP+"/client-config", "Get Client Config")+
 			// 	fSf("\n")+
 			fSf("[POST] %-40s\n%s", fullIP+route.Convert,
-				"--- Upload SIF(XML), return SIF(JSON).\n"+
-					"------ [sv]:   SIF Ver\n"+
+				"--- Upload SIF(XML), return SIF(JSON)\n"+
+					"------ [sv]:   SIF Ver "+fSf("%v", vers)+"\n"+
 					"------ [nats]: send json to NATS\n"+
-					"------ [wrap]: if uploaded SIF is single root wrapped file"))
+					"------ [wrap]: if uploaded SIF file is single root wrapped"))
 	})
 
 	// ------------------------------------------------------------------------------------ //

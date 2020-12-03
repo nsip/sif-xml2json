@@ -2,11 +2,11 @@ package cfg
 
 import "github.com/cdutwhu/gonfig"
 
-// Config : AUTO Created From /home/qmiao/Desktop/sif-xml2json/config/config.toml
+// Config : AUTO Created From /home/qmiao/Desktop/4rel/sif-xml2json/config/config.toml
 type Config struct {
-	Log string
 	Service interface{}
 	Version interface{}
+	Log string
 	SIF struct {
 		DefaultVer string
 	}
@@ -17,8 +17,8 @@ type Config struct {
 		Port int
 	}
 	Route struct {
-		Help string
 		Convert string
+		Help string
 	}
 	NATS struct {
 		Subject string

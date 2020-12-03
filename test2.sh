@@ -10,7 +10,7 @@ W=`tput sgr0`
 printf "\n"
 
 ip="localhost:1324/"      ###
-base=$ip"sif-xml2json/v0.1.2/" ###
+base=$ip"sif-xml2json/v0.1.4" ###
 
 title='SIF-XML2JSON all API Paths'
 url=$ip
@@ -31,7 +31,7 @@ sv=3.4.6
 
 SIFXFile=./data/examples/siftest346.xml
 title='Convert Test @ '$SIFXFile
-url=$base"convert?sv=$sv&wrap"   ###
+url=$base"?sv=$sv&wrap"   ###
 file="@"$SIFXFile
 scode=`curl -X POST $url --data-binary $file -w "%{http_code}" -s -o /dev/null`
 if [ $scode -ne 200 ]; then
