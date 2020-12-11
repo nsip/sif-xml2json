@@ -31,7 +31,9 @@ that converts SIF JSON to SIF XML.
    1. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory.
    2. Run sifxml2json(.exe). 
    
-   On startup, you should see output messages printed such as service name, server IP:Port and service version.
+   On startup, you should see output messages printed such as service name, server IP:Port and service version:
+   
+   ![Start service](/screenshots/1 Start Service.png)
 
 ## Play with Insomnia
 
