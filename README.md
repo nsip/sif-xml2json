@@ -3,7 +3,7 @@
 sifxml2json is a web service utility that converts SIF XML to JSON. It has a sister tool [sif-json2xml](https://github.com/nsip/sif-json2xml)
 that converts SIF JSON to SIF XML.
 
-## Installation prerequisites
+### Installation prerequisites
 64-bit platforms are supported.
 
 ## Download binary packages
