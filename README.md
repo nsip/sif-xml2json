@@ -1,12 +1,9 @@
-# Web-Service for Converting SIF XML Format to JSON Format
-
-
 # sifxml2json - a web service for converting SIF XML to JSON
 
 sifxml2json is a web service utility that converts SIF XML to JSON. It has a sister tool [sif-json2xml](https://github.com/nsip/sif-json2xml)
 that converts SIF JSON to SIF XML.
 
-## Prerequisites
+## Installation prerequisites
 64-bit platforms are supported.
 
 ## Download binary packages
@@ -25,20 +22,22 @@ that converts SIF JSON to SIF XML.
    README.md                 instructions and other information
 
 ## installation
-   Extract zipfile to your chosen working directory, and run the server from there as instructed below.
+   Extract zipfile to your chosen working directory, and run the server from there as described below.
 
 ## Start server
 
   Note: A default starting configuration is provided in config.toml. You can edit this if necessary.
 
-   1. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
-   2. Run sifxml2json(.exe). On startup, you should see output messages printed such as service name, server IP:Port and service version.
+   1. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory.
+   2. Run sifxml2json(.exe). 
+   
+   On startup, you should see output messages printed such as service name, server IP:Port and service version.
 
 ## Play with Insomnia
 
 To give you a quick idea of how sifxml2json works, here's how to convert the sample file provided with the installation.
 
-Insomnia is a REST-based API testing system. You can use it to call the converter web service sifxml2json:
+For this test we'll use Insomnia, a REST-based API testing system, to call the converter web service sifxml2json:
 
 1.  If it is not already installed on your machine, download [Insomnia Core](https://insomnia.rest/download/core/?).
 
