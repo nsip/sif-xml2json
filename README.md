@@ -15,18 +15,18 @@ that converts SIF JSON to SIF XML.
 
 ## What is in each release package ?
 
-   sifxml2json(.exe)         server containing the converter web service
-   config.toml               configuration file for the converter web service
-   StudentPersonals.xml      sample SIF xml file for testing
-   screenshot folder         running & testing screenshots
-   README.md                 instructions and other information
+ *  **sifxml2json(.exe)**  - the converter web service
+ *  **config.toml** - configuration file for the converter web service
+ *  **StudentPersonals.xml** - a sample SIF xml file for testing
+ *  **screenshots** - the screenshots folder contains images to assist with running and testing sifxml2json
+ *  **README.md** - instructions and other information
 
-## installation
-   Extract zipfile to your chosen working directory, and run the server from there as described below.
+## Installation
+   Extract the downloaded zipfile to your chosen working directory, and run the server from there as described below.
 
 ## Start server
 
-  Note: A default starting configuration is provided in config.toml. You can edit this if necessary.
+  Note: A default starting configuration for the server is provided in config.toml. You can edit this if necessary.
 
    1. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory.
    2. Run sifxml2json(.exe). 
@@ -41,7 +41,7 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 1.  If it is not already installed on your machine, download [Insomnia Core](https://insomnia.rest/download/core/?).
 
-2. Start Insomnia UI
+2. Start the Insomnia UI
 
 3. Select `POST` method.
 
@@ -59,7 +59,7 @@ from your Windows system folder (C:\Windows\System32\curl.exe). Copy curl.exe to
 
 2. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
 
-2. Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@StudentPersonals.xml'`.
+3. Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@StudentPersonals.xml'`.
 
 ## Notes
 
