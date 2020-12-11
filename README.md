@@ -29,7 +29,8 @@ that converts SIF JSON to SIF XML.
   Note: A default starting configuration for the server is provided in config.toml. You can edit this if necessary.
 
    1. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory.
-   2. Run sifxml2json(.exe). 
+   2. Run sifxml2json(.exe):
+      `./sifxml2json`
    
    On startup, you should see output messages printed such as service name, server IP:Port and service version:
    
