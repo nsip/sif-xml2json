@@ -45,19 +45,19 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 1.  If it is not already installed on your machine, download [Insomnia Core](https://insomnia.rest/download/core/?).
 
-2. Start the Insomnia UI
+2. Start Insomnia
 
-Click "New Request"
+3. Click "New Request" (If you have previously used Insomnia, add a new request from the pulldown on the left hand panel)
 
-3. From the method dropdown on the right, Select `POST` method.
+4. From the method dropdown on the right, Select `POST`.
 
-4. URL input `localhost:1324/sif-xml2json/v0.1.5?wrap`, 
+5. Add the request `localhost:1324` select `XML` from the body type pulldown, then click Create
 
-From the Body dropdown, select `XML` 
+6. In the POST field above the centre Request body pane, type `localhost:1324/sif-xml2json/v0.1.5?wrap`
 
-Open the Select and copy content of sample sif file "StudentPersonals.xml" into left Request Body panel.
+7. Copy the body of the sample file `StudentPersonals.xml` into the centre Request Body panel.
 
-5. Click Send button. The converted JSON result will be displayed in the righthand Response panel.
+8. Click the Send button. The converted JSON result should be displayed in the right hand Response panel.
 
 ![2 Insomnia test image](screenshots/2_insomnia_test.PNG)
 
