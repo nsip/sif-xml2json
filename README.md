@@ -69,9 +69,9 @@ from your Windows system folder (C:\Windows\System32\curl.exe). Copy curl.exe to
 
 ### Notes
 
-   If sifxml2json is being run remotely, set the URL `localhost` to the machine's IP address .
-   The SIF version parameter (URL param `sv`)can be set to the supported SIF data model versions '3.4.6' or '3.4.7'.
-   Wrapper parameter (URL param `wrap`): if there is a (non-SIF-object) single wrapper root in the XML file you wish to covert, add the `wrap` parameter.
+   *  If sifxml2json is being run remotely, set the URL `localhost` to the machine's IP address .
+   *  The SIF version parameter (URL param `sv`)can be set to the supported SIF data model versions '3.4.6' or '3.4.7'.
+   *  Wrapper parameter (URL param `wrap`): if there is a (non-SIF-object) single wrapper root in the XML file you wish to covert, add the `wrap` parameter.
 
 ### More information
 For more on the SIF data standard:
