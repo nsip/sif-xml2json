@@ -51,7 +51,7 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 5. Click Send button. The converted JSON result will be displayed in the righthand Response panel.
 
-![2 Insomnia test image](2 Insomnia Test.PNG)
+![2 Insomnia test image](screenshots/3 Curl Test.PNG)
 
 ## Play with Curl
 
