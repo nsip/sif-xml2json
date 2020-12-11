@@ -1,5 +1,78 @@
 # Web-Service for Converting SIF XML Format to JSON Format
 
+
+# sifxml2json - a web service for converting SIF XML to JSON
+
+sifxml2json is a web service utility that converts SIF XML to JSON. It has a sister tool [sif-json2xml](https://github.com/nsip/sif-json2xml)
+that converts SIF JSON to SIF XML.
+
+## Prerequisites
+64-bit platforms are supported.
+
+## Download binary packages
+   You can download the binary packages from [here](https://github.com/nsip/sif-xml2json/releases) - pull down the Assets list to see current releases.
+   (Advanced option) If you prefer to build the binary yourself, here are instructions for doing so.
+
+## Build (optional)
+   If you prefer, you can [build the binary yourself](#build-prerequisite).
+
+## What is in each release package ?
+
+   sifxml2json(.exe)         server containing the converter web service
+   config.toml               configuration file for the converter web service
+   StudentPersonals.xml      sample SIF xml file for testing
+   screenshot folder         running & testing screenshots
+   README.md                 instructions and other information
+
+## installation
+   Extract zipfile to your chosen working directory, and run the server from there as instructed below.
+
+## Start server
+
+  Note: A default starting configuration is provided in config.toml. You can edit this if necessary.
+
+   1. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
+   2. Run sifxml2json(.exe). On startup, you should see output messages printed such as service name, server IP:Port and service version.
+
+## Play with Insomnia
+
+To give you a quick idea of how sifxml2json works, here's how to convert the sample file provided with the installation.
+
+Insomnia is a REST-based API testing system. You can use it to call the converter web service sifxml2json:
+
+1.  If it is not already installed on your machine, download [Insomnia Core](https://insomnia.rest/download/core/?).
+
+2. Start Insomnia UI
+
+3. Select `POST` method.
+
+4. URL input `localhost:1324/sif-xml2json/v0.1.5?wrap`, then copy content of sample sif file "StudentPersonals.xml" into left Request Body panel.
+
+5. Click Send button. The converted JSON result will be displayed in the righthand Response panel.
+
+## Play with Curl
+
+Curl is a client URL tool that can also be used to call the converter service sifxml2json.
+
+1. Make sure `curl` is available on your machine. 
+On Windows, you can get curl.exe from [here](URL for single exe curl) OR you can copy it
+from your Windows system folder (C:\Windows\System32\curl.exe). Copy curl.exe to your working directory.
+
+2. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
+
+2. Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@StudentPersonals.xml'`.
+
+## Notes
+
+   If sifxml2json is being run remotely, set the URL `localhost` to the machine's IP address .
+   The SIF version parameter (URL param `sv`)can be set to the supported SIF data model versions '3.4.6' or '3.4.7'.
+   Wrapper parameter (URL param `wrap`): if there is a (non-SIF-object) single wrapper root in the XML file you wish to covert, add the `wrap` parameter.
+
+## More information
+For more on the SIF data standard:
+(links to SIF stuff)
+
+(#build-prerequisite)
 ## Build Prerequisite
 
 0. Except 'config.toml' content, Do NOT change any project structure & file name & content.
