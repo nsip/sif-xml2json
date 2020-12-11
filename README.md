@@ -33,7 +33,7 @@ that converts SIF JSON to SIF XML.
    
    On startup, you should see output messages printed such as service name, server IP:Port and service version:
    
-   ![Start service](screenshots/1StartService.PNG)
+   ![Start service](screenshots/1_start_service.PNG)
 
 ## Play with Insomnia
 
@@ -64,6 +64,8 @@ from your Windows system folder (C:\Windows\System32\curl.exe). Copy curl.exe to
 2. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
 
 3. Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@StudentPersonals.xml'`.
+
+![3 curl test image](screenshots/3_curl_test.PNG)
 
 ## Notes
 
