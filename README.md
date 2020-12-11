@@ -19,7 +19,7 @@ that converts SIF JSON to SIF XML.
  *  **config.toml** - configuration file for the converter web service
  *  **StudentPersonals.xml** - a sample SIF xml file for testing
  *  **screenshots** - the screenshots folder contains images to assist with running and testing sifxml2json
- *  **README.md** - instructions and other information
+ *  **README.md** - these instructions and other information. Note that you can follow the same installation instructions from either the downloaded readme or the github repository readme (which is rendered to include images inline)
 
 ### Installation
    Extract the downloaded zipfile to your chosen working directory, and run the server from there as described below.
