@@ -6,14 +6,14 @@ that converts SIF JSON to SIF XML.
 ### Installation prerequisites
 64-bit platforms are supported.
 
-## Download binary packages
+### Download binary packages
    You can download the binary packages from [here](https://github.com/nsip/sif-xml2json/releases) - pull down the Assets list to see current releases.
    (Advanced option) If you prefer to build the binary yourself, here are instructions for doing so.
 
-## Build (optional)
+### Build (optional)
    If you prefer, you can [build the binary yourself](#build-prerequisite).
 
-## What is in each release package ?
+### What is in each release package ?
 
  *  **sifxml2json(.exe)**  - the converter web service
  *  **config.toml** - configuration file for the converter web service
@@ -21,10 +21,10 @@ that converts SIF JSON to SIF XML.
  *  **screenshots** - the screenshots folder contains images to assist with running and testing sifxml2json
  *  **README.md** - instructions and other information
 
-## Installation
+### Installation
    Extract the downloaded zipfile to your chosen working directory, and run the server from there as described below.
 
-## Start server
+### Start server
 
   Note: A default starting configuration for the server is provided in config.toml. You can edit this if necessary.
 
@@ -35,7 +35,7 @@ that converts SIF JSON to SIF XML.
    
    ![Start service](screenshots/1_start_service.PNG)
 
-## Play with Insomnia
+### Play with Insomnia
 
 To give you a quick idea of how sifxml2json works, here's how to convert the sample file provided with the installation.
 
@@ -53,7 +53,7 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 ![2 Insomnia test image](screenshots/2_insomnia_test.PNG)
 
-## Play with Curl
+### Play with Curl
 
 Curl is a client URL tool that can also be used to call the converter service sifxml2json.
 
@@ -67,13 +67,13 @@ from your Windows system folder (C:\Windows\System32\curl.exe). Copy curl.exe to
 
 ![3 curl test image](screenshots/3_curl_test.PNG)
 
-## Notes
+### Notes
 
    If sifxml2json is being run remotely, set the URL `localhost` to the machine's IP address .
    The SIF version parameter (URL param `sv`)can be set to the supported SIF data model versions '3.4.6' or '3.4.7'.
    Wrapper parameter (URL param `wrap`): if there is a (non-SIF-object) single wrapper root in the XML file you wish to covert, add the `wrap` parameter.
 
-## More information
+### More information
 For more on the SIF data standard:
 (links to SIF stuff)
 
