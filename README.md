@@ -78,7 +78,6 @@ Here is the current SIF data standard:
 http://specification.sifassociation.org/Implementation/AU
 
 
-(#build-prerequisite)
 ## Build Prerequisite
 
 0. Except 'config.toml' content, Do NOT change any project structure & file name & content.
