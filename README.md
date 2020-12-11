@@ -51,6 +51,8 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 5. Click Send button. The converted JSON result will be displayed in the righthand Response panel.
 
+![2 Insomnia test image](2 Insomnia Test.PNG)
+
 ## Play with Curl
 
 Curl is a client URL tool that can also be used to call the converter service sifxml2json.
