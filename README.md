@@ -30,7 +30,8 @@ that converts SIF JSON to SIF XML.
 
    1. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory.
    2. Run sifxml2json(.exe):
-      `./sifxml2json`
+   
+   `./sifxml2json`
    
    On startup, you should see output messages printed such as service name, server IP:Port and service version:
    
@@ -46,9 +47,15 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 2. Start the Insomnia UI
 
-3. Select `POST` method.
+Click "New Request"
 
-4. URL input `localhost:1324/sif-xml2json/v0.1.5?wrap`, then copy content of sample sif file "StudentPersonals.xml" into left Request Body panel.
+3. From the method dropdown on the right, Select `POST` method.
+
+4. URL input `localhost:1324/sif-xml2json/v0.1.5?wrap`, 
+
+From the Body dropdown, select `XML` 
+
+Open the Select and copy content of sample sif file "StudentPersonals.xml" into left Request Body panel.
 
 5. Click Send button. The converted JSON result will be displayed in the righthand Response panel.
 
