@@ -17,7 +17,7 @@ that converts SIF JSON to SIF XML.
 
  *  **sifxml2json(.exe)**  - the converter web service
  *  **config.toml** - configuration file for the converter web service
- *  **StudentPersonals.xml** - a sample SIF xml file for testing
+ *  **student_personals.xml** - a sample SIF xml file for testing
  *  **screenshots** - the screenshots folder contains images to assist with running and testing sifxml2json
  *  **README.md** - these instructions and other information. Note that you can follow the same installation instructions from either the downloaded readme or the github repository readme (which is rendered to include images inline)
 
@@ -35,7 +35,7 @@ that converts SIF JSON to SIF XML.
    
    On startup, you should see output messages printed such as service name, server IP:Port and service version:
    
-   ![Start service](screenshots/1_start_service.PNG)
+   ![Start service](screenshots/1_start_service.png)
 
 ### Play with Insomnia
 
@@ -59,7 +59,7 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 8. Click the Send button. The converted JSON result should be displayed in the right hand Response panel.
 
-![2 Insomnia test image](screenshots/2_insomnia_test.PNG)
+![2 Insomnia test image](screenshots/2_insomnia_test.png)
 
 ### Play with Curl
 
@@ -73,7 +73,7 @@ from your Windows system folder (C:\Windows\System32\curl.exe). Copy curl.exe to
 
 3. Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@StudentPersonals.xml'`.
 
-![3 curl test image](screenshots/3_curl_test.PNG)
+![3 curl test image](screenshots/3_curl_test.png)
 
 ### Notes
 
