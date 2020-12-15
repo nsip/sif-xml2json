@@ -65,13 +65,16 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 Curl is a client URL tool that can also be used to call the converter service sifxml2json.
 
-1. Make sure `curl` is available on your machine. 
-On Windows, you can get curl.exe from [here](URL for single exe curl) OR you can copy it
-from your Windows system folder (C:\Windows\System32\curl.exe). Copy curl.exe to your working directory.
+1, If it is not already running, start the server (instructions above).
 
-2. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
+2. Make sure `curl` is available on your machine. 
+(Note: the Windows Powershell version of curl may not work this service.)
+On Windows, if you don't have curl, you can copy it from your Windows system folder (C:\Windows\System32\curl.exe) to your working directory. 
 
-3. Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`.
+
+3. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
+
+4. Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`.
 
 ![3 curl test image](screenshots/3_curl_test.png)
 
