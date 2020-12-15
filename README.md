@@ -8,8 +8,7 @@ that converts SIF JSON to SIF XML.
 
 ### Download binary packages
    You can download the binary packages from [here](https://github.com/nsip/sif-xml2json/releases) - pull down the Assets list to see current releases.
-   (Advanced option) If you prefer to build the binary yourself, here are instructions for doing so.
-
+   
 ### Build (optional)
    If you prefer, you can [build the binary yourself](#build-prerequisite).
 
