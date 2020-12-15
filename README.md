@@ -55,7 +55,7 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 6. In the POST field above the centre Request body pane, type `localhost:1324/sif-xml2json/v0.1.5?wrap`
 
-7. Copy the body of the sample file `StudentPersonals.xml` into the centre Request Body panel.
+7. Copy the body of the sample file `student_personals.xml` into the centre Request Body panel.
 
 8. Click the Send button. The converted JSON result should be displayed in the right hand Response panel.
 
@@ -71,7 +71,7 @@ from your Windows system folder (C:\Windows\System32\curl.exe). Copy curl.exe to
 
 2. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
 
-3. Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@StudentPersonals.xml'`.
+3. Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`.
 
 ![3 curl test image](screenshots/3_curl_test.png)
 
