@@ -75,6 +75,7 @@ On Windows, if you don't have curl, you can copy it from your Windows system fol
 3. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
 
 4. On Windows: Run `./curl.exe -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`
+   
    On other platforms: Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`.
 
 ![3 curl test image](screenshots/3_curl_test.png)
