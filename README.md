@@ -42,7 +42,7 @@ To give you a quick idea of how sifxml2json works, here's how to convert the sam
 
 For this test we'll use Insomnia, a REST-based API testing system, to call the converter web service sifxml2json:
 
-1.  If it is not already installed on your machine, download [Insomnia Core](https://insomnia.rest/download/core/?).
+1. If it is not already installed on your machine, download [Insomnia Core](https://insomnia.rest/download/core/?).
 
 2. Start Insomnia
 
@@ -64,17 +64,15 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 Curl is a client URL tool that can also be used to call the converter service sifxml2json.
 
-1, If it is not already running, start the server (instructions above).
+1. If it is not already running, start the server (instructions above).
 
-2. Make sure `curl` is available on your machine. 
+2. Make sure `curl` is available on your machine.
 (Note: the Windows Powershell version of curl may not work this service.)
 On Windows, if you don't have curl, you can copy it from your Windows system folder (C:\Windows\System32\curl.exe) to your working directory. 
-
 
 3. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
 
 4. On Windows: Run `./curl.exe -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`
-   
    On other platforms: Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`.
 
 ![3 curl test image](screenshots/3_curl_test.png)
@@ -82,7 +80,7 @@ On Windows, if you don't have curl, you can copy it from your Windows system fol
 ### Notes
 
    *  If sifxml2json is being run remotely, set the URL `localhost` to the machine's IP address .
-   *  The SIF version parameter (URL param `sv`)can be set to the supported SIF data model versions '3.4.6' or '3.4.7'.
+   *  The SIF version parameter (URL param `sv`)can be set to the supported SIF data model versions '3.4.2', '3.4.3' ... '3.4.8.draft'.
    *  Wrapper parameter (URL param `wrap`): if there is a (non-SIF-object) single wrapper root in the XML file you wish to covert, add the `wrap` parameter.
 
 ### More information
@@ -103,7 +101,7 @@ http://specification.sifassociation.org/Implementation/AU
 
 1. Make sure `golang` dev package & `git` are available on your machine.
 
-2. Run `./build.sh` to build service which embedded with SIF Spec 3.4.6 & 3.4.7.
+2. Run `./build.sh` to build service which embedded with SIF all Spec. i.e. 3.4.2, 3.4.3 ... 3.4.8.draft.
 
 3. Run `./release.sh [linux64|win64|mac] 'dest-path'` to extract minimal executable package on different.
    e.g. `./release.sh win64 ~/Desktop/sif-xml2json/` extracts windows version bin package into "~/Desktop/sif-xml2json/".
@@ -143,5 +141,5 @@ http://specification.sifassociation.org/Implementation/AU
    `Port`: Get from server's 'config.toml'-[WebService]-[Port], default is 1324.
    `Service`: service name. Get from server's 'config.toml'-[Service].
    `Version`: service version. Get from server's 'config.toml'-[Version].
-   `sv`: SIF Spec Version, available 3.4.6 & 3.4.7
+   `sv`: SIF Spec Version, available 3.4.2 to 3.4.8.draft.
    `wrap`: if there is a single wrapper (non-sif-object root) on upload sif.xml, append param `wrap`.  

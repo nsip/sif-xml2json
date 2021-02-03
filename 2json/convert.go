@@ -5,14 +5,55 @@ import (
 
 	xj "github.com/basgys/goxml2json"
 	cfg "github.com/nsip/sif-xml2json/config/cfg"
+	sif342 "github.com/nsip/sif-spec-res/3.4.2"
+	sif343 "github.com/nsip/sif-spec-res/3.4.3"
+	sif344 "github.com/nsip/sif-spec-res/3.4.4"
+	sif345 "github.com/nsip/sif-spec-res/3.4.5"
 	sif346 "github.com/nsip/sif-spec-res/3.4.6"
 	sif347 "github.com/nsip/sif-spec-res/3.4.7"
+	sif348draft "github.com/nsip/sif-spec-res/3.4.8.draft"
 )
 
 func selBytesOfJSON(ver, ruleType, object string, indices ...int) (rt []string, err error) {
 
 	var mBytes map[string][]byte
 	switch ver {
+	case "3.4.2":
+		switch sToLower(ruleType) {
+		case "bool", "boolean":
+			mBytes = sif342.JSON_BOOL
+		case "list":
+			mBytes = sif342.JSON_LIST
+		case "num", "number", "numeric":
+			mBytes = sif342.JSON_NUM
+		}
+	case "3.4.3":
+		switch sToLower(ruleType) {
+		case "bool", "boolean":
+			mBytes = sif343.JSON_BOOL
+		case "list":
+			mBytes = sif343.JSON_LIST
+		case "num", "number", "numeric":
+			mBytes = sif343.JSON_NUM
+		}
+	case "3.4.4":
+		switch sToLower(ruleType) {
+		case "bool", "boolean":
+			mBytes = sif344.JSON_BOOL
+		case "list":
+			mBytes = sif344.JSON_LIST
+		case "num", "number", "numeric":
+			mBytes = sif344.JSON_NUM
+		}
+	case "3.4.5":
+		switch sToLower(ruleType) {
+		case "bool", "boolean":
+			mBytes = sif345.JSON_BOOL
+		case "list":
+			mBytes = sif345.JSON_LIST
+		case "num", "number", "numeric":
+			mBytes = sif345.JSON_NUM
+		}
 	case "3.4.6":
 		switch sToLower(ruleType) {
 		case "bool", "boolean":
@@ -30,6 +71,15 @@ func selBytesOfJSON(ver, ruleType, object string, indices ...int) (rt []string, 
 			mBytes = sif347.JSON_LIST
 		case "num", "number", "numeric":
 			mBytes = sif347.JSON_NUM
+		}
+	case "3.4.8.draft":
+		switch sToLower(ruleType) {
+		case "bool", "boolean":
+			mBytes = sif348draft.JSON_BOOL
+		case "list":
+			mBytes = sif348draft.JSON_LIST
+		case "num", "number", "numeric":
+			mBytes = sif348draft.JSON_NUM
 		}
 	default:
 		err = fmt.Errorf("Error: No SIF Spec @ Version [%s]", ver)
