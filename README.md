@@ -105,7 +105,6 @@ http://specification.sifassociation.org/Implementation/AU
 
 3. Run `./release.sh [linux64|win64|mac] 'dest-path'` to extract minimal executable package on different.
    e.g. `./release.sh win64 ~/Desktop/sif-xml2json/` extracts windows version bin package into "~/Desktop/sif-xml2json/".
-   then 'server' executable is available under "~/Desktop/sif-xml2json/".
 
 4. Jump into "~/Desktop/sif-xml2json/", modify 'config.toml' if needed.
    Please set [Service] & [Version] to your own value.
