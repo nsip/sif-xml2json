@@ -9,6 +9,5 @@ W=`tput sgr0`
 
 oripath=`pwd`
 
-cd ./sif-spec && ./build.sh && cd $oripath && echo "${G}sif-spec ready${W}"
 cd ./config && ./build.sh && cd $oripath && echo "${G}config prepared${W}"
 cd ./server && ./build.sh && cd $oripath && echo "${G}server building done${W}"

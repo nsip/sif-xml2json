@@ -19,6 +19,7 @@ var (
 	fPln             = fmt.Println
 	fSf              = fmt.Sprintf
 	fPf              = fmt.Printf
+	sReplace         = strings.Replace
 	sReplaceAll      = strings.ReplaceAll
 	sTrimRight       = strings.TrimRight
 	sTrimLeft        = strings.TrimLeft
