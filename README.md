@@ -3,40 +3,44 @@
 sifxml2json is a web service utility that converts SIF XML to JSON. It has a sister tool [sif-json2xml](https://github.com/nsip/sif-json2xml)
 that converts SIF JSON to SIF XML.
 
-### Installation prerequisites
+## Installation prerequisites
+
 64-bit platforms are supported.
 
-### Download binary packages
-   You can download the binary packages from [here](https://github.com/nsip/sif-xml2json/releases) - pull down the Assets list to see current releases.
-   
-### Build (optional)
-   If you prefer, you can [build the binary yourself](#build-prerequisite).
+## Download binary packages
 
-### What is in each release package ?
+You can download the binary packages from [here](https://github.com/nsip/sif-xml2json/releases) - pull down the Assets list to see current releases.
 
- *  **sifxml2json(.exe)**  - the converter web service
- *  **config.toml** - configuration file for the converter web service
- *  **student_personals.xml** - a sample SIF xml file for testing
- *  **screenshots** - the screenshots folder contains images to assist with running and testing sifxml2json
- *  **README.md** - these instructions and other information. Note that you can follow the same installation instructions from either the downloaded readme or the github repository readme (which is rendered to include images inline)
+## Build (optional)
 
-### Installation
+If you prefer, you can [build the binary yourself](#build-prerequisite).
+
+## What is in each release package ?
+
+* **sifxml2json(.exe)**  - the converter web service
+* **config.toml** - configuration file for the converter web service
+* **student_personals.xml** - a sample SIF xml file for testing
+* **screenshots** - the screenshots folder contains images to assist with running and testing sifxml2json
+* **README.md** - these instructions and other information. Note that you can follow the same installation instructions from either the downloaded readme or the github repository readme (which is rendered to include images inline)
+
+## Installation
+
    Extract the downloaded zipfile to your chosen working directory, and run the server from there as described below.
 
-### Start server
+## Start server
 
-  Note: A default starting configuration for the server is provided in config.toml. You can edit this if necessary.
+Note: A default starting configuration for the server is provided in config.toml. You can edit this if necessary.
 
-   1. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory.
-   2. Run sifxml2json(.exe):
-   
+1. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory.
+2. Run sifxml2json(.exe):
+
    `./sifxml2json`
-   
-   On startup, you should see output messages printed such as service name, server IP:Port and service version:
-   
-   ![Start service](screenshots/1_start_service.png)
 
-### Play with Insomnia
+   On startup, you should see output messages printed such as service name, server IP:Port and service version:
+
+   ![1 Start service](screenshots/1_start_service.png)
+
+## Play with Insomnia
 
 To give you a quick idea of how sifxml2json works, here's how to convert the sample file provided with the installation.
 
@@ -52,7 +56,7 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 5. Add the request `localhost:1324` select `XML` from the body type pulldown, then click Create
 
-6. In the POST field above the centre Request body pane, type `localhost:1324/sif-xml2json/v0.1.5?wrap`
+6. In the POST field above the centre Request body pane, type `localhost:1324/sif-xml2json/convert?wrap`
 
 7. Copy the body of the sample file `student_personals.xml` into the centre Request Body panel.
 
@@ -60,7 +64,7 @@ For this test we'll use Insomnia, a REST-based API testing system, to call the c
 
 ![2 Insomnia test image](screenshots/2_insomnia_test.png)
 
-### Play with Curl
+## Play with Curl
 
 Curl is a client URL tool that can also be used to call the converter service sifxml2json.
 
@@ -68,25 +72,24 @@ Curl is a client URL tool that can also be used to call the converter service si
 
 2. Make sure `curl` is available on your machine.
 (Note: the Windows Powershell version of curl may not work this service.)
-On Windows, if you don't have curl, you can copy it from your Windows system folder (C:\Windows\System32\curl.exe) to your working directory. 
+On Windows, if you don't have curl, you can copy it from your Windows system folder (C:\Windows\System32\curl.exe) to your working directory.
 
 3. In your terminal (Linux/Mac) or Powershell (Windows), navigate to your chosen working directory
 
-4. On Windows: Run `./curl.exe -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`
-   On other platforms: Run `curl -X POST 'localhost:1324/sif-xml2json/v0.1.5?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`.
+4. On Windows: Run `./curl.exe -X POST 'localhost:1324/sif-xml2json/convert?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`
+   On other platforms: Run `curl -X POST 'localhost:1324/sif-xml2json/convert?wrap&sv=3.4.7' --data-binary '@student_personals.xml' > student_personals.json`.
 
 ![3 curl test image](screenshots/3_curl_test.png)
 
-### Notes
+## Notes
 
-   *  If sifxml2json is being run remotely, set the URL `localhost` to the machine's IP address .
-   *  The SIF version parameter (URL param `sv`)can be set to the supported SIF data model versions '3.4.2', '3.4.3' ... '3.4.8.draft'.
-   *  Wrapper parameter (URL param `wrap`): if there is a (non-SIF-object) single wrapper root in the XML file you wish to covert, add the `wrap` parameter.
+* If sifxml2json is being run remotely, set the URL `localhost` to the machine's IP address .
+* The SIF version parameter (URL param `sv`)can be set to the supported SIF data model versions '3.4.2', '3.4.3' ... '3.4.8.draft'.
+* Wrapper parameter (URL param `wrap`): if there is a (non-SIF-object) single wrapper root in the XML file you wish to covert, add the `wrap` parameter.
 
-### More information
-Here is the current SIF data standard:
-http://specification.sifassociation.org/Implementation/AU
+## More information
 
+Here is the current [SIF data standard](http://specification.sifassociation.org/Implementation/AU)
 
 ## Build Prerequisite
 
@@ -107,7 +110,7 @@ http://specification.sifassociation.org/Implementation/AU
    e.g. `./release.sh win64 ~/Desktop/sif-xml2json/` extracts windows version bin package into "~/Desktop/sif-xml2json/".
 
 4. Jump into "~/Desktop/sif-xml2json/", modify 'config.toml' if needed.
-   Please set [Service] & [Version] to your own value.
+   Could set **Service** & **Version** to your own proper value.
 
 5. Run `server`.
    Default port is `1324`, can be set at config.toml.
@@ -119,8 +122,8 @@ http://specification.sifassociation.org/Implementation/AU
 1. Run `docker build --rm -t nsip/sif-xml2json:latest .` to make docker image.
 
 2. In order to do configuration before running docker image.
-   Copy '/sif-xml2json/config/config.toml' to current directory, modify if needed, and name it like `config_d.toml`.
-   Please set [Service] & [Version] to your own value.
+   Copy '/sif-xml2json/config/config.toml' to current directory, modify if needed, and name it - `config_d.toml`.
+   Could set **Service** & **Version** to your own proper value.
 
 3. Run `docker run --rm --mount type=bind,source=$(pwd)/config_d.toml,target=/config.toml -p 0.0.0.0:1324:1324 nsip/sif-xml2json`.
    Default port is `1324`, can be set at config.toml. If not 1324, change above command's '1324' to your own number.

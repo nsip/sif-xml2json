@@ -21,14 +21,14 @@ type Config struct {
 		Help string
 	}
 	NATS struct {
+		URL string
 		Subject string
 		Timeout int
-		URL string
 	}
 	Server struct {
-		Protocol string
 		IP interface{}
 		Port interface{}
+		Protocol string
 	}
 	Access struct {
 		Timeout int

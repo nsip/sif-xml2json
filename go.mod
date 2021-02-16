@@ -6,13 +6,14 @@ require (
 	github.com/basgys/goxml2json v1.1.0
 	github.com/cdutwhu/debog v0.2.10
 	github.com/cdutwhu/gonfig v0.0.0-20201023060437-1964b194abe9
-	github.com/cdutwhu/gotil v0.1.14
+	github.com/cdutwhu/gotil v0.1.16
 	github.com/cdutwhu/json-tool v0.1.6
 	github.com/cdutwhu/n3-util v0.3.11
-	github.com/cdutwhu/xml-tool v0.1.20
-	github.com/gookit/color v1.3.6 // indirect
+	github.com/cdutwhu/xml-tool v0.1.25
+	github.com/davecgh/go-spew v1.1.1
+	github.com/gookit/color v1.3.7 // indirect
 	github.com/labstack/echo-contrib v0.9.0
-	github.com/labstack/echo/v4 v4.1.17
+	github.com/labstack/echo/v4 v4.2.0
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/nats-io/jwt v1.2.2 // indirect
 	github.com/nats-io/nats.go v1.10.0

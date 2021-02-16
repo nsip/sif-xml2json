@@ -1,4 +1,4 @@
-Log = "~/.[s]/log/[DATE].log"
+Log = "./log/[DATE].log"
 Service = "[PRJ]"
 Version = "[VER]"
 
@@ -12,7 +12,7 @@ Token = "54290728-93e0-425a-a49c-c9e834288026"
 Port = 1324
 
 [Route]
-Convert = "/[s]/[v]"
+Convert = "/[s]/convert"
 Help = "/"
 
 [NATS]

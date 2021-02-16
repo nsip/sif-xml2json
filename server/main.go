@@ -15,7 +15,6 @@ import (
 	"github.com/cdutwhu/gonfig/attrim"
 	"github.com/cdutwhu/gonfig/strugen"
 	"github.com/cdutwhu/gotil/misc"
-	"github.com/cdutwhu/gotil/rflx"
 	jt "github.com/cdutwhu/json-tool"
 	xt "github.com/cdutwhu/xml-tool"
 	"github.com/labstack/echo-contrib/jaegertracing"
@@ -40,6 +39,18 @@ func mkCfg4Clt(cfg interface{}) {
 	strugen.GenNewCfg(outSrc)
 }
 
+func mkCfg4Docker(cfg interface{}) {
+	forel := "./config_rel.toml"
+	gonfig.Save(forel, cfg)
+	outToml := "../config_d.toml"
+	os.Remove(outToml)
+	attrim.RmCfgAttrL1(forel, outToml, "Log", "Server", "Access")
+}
+
+var (
+	gCfg *cfg.Config
+)
+
 func main() {
 	// Load global config.toml file from config/
 	gonfig.SetDftCfgVal("sif-xml2json", "0.0.0")
@@ -54,16 +65,17 @@ func main() {
 		"../config/config.toml",
 	)
 	failOnErrWhen(pCfg == nil, "%v: Config Init Error", errs.CFG_INIT_ERR)
-	Cfg := pCfg.(*cfg.Config)
+	gCfg = pCfg.(*cfg.Config)
 
-	// Trim a shorter config toml file for client package
+	// Trim a shorter config toml file for docker & client package
 	if len(os.Args) > 2 && os.Args[2] == "trial" {
-		mkCfg4Clt(Cfg)
+		mkCfg4Docker(gCfg)
+		mkCfg4Clt(gCfg)
 		return
 	}
 
-	ws := Cfg.WebService
-	var IService interface{} = Cfg.Service // Cfg.Service can be "string", can be "interface{}"
+	ws := gCfg.WebService
+	var IService interface{} = gCfg.Service // gCfg.Service can be "string" or "interface{}"
 	service := IService.(string)
 
 	// Set Jaeger Env for tracing
@@ -72,15 +84,17 @@ func main() {
 	os.Setenv("JAEGER_SAMPLER_PARAM", "1")
 
 	// Set LOGGLY
-	setLoggly(true, Cfg.Loggly.Token, service)
+	setLoggly(false, gCfg.Loggly.Token, service)
 
 	// Set Log Options
 	syncBindLog(true)
 	enableWarnDetail(false)
-	enableLog2F(true, Cfg.Log)
+	if gCfg.Log != "" {
+		enableLog2F(true, gCfg.Log)
+		logGrp.Do(fSf("local log file @ [%s]", gCfg.Log))
+	}
 
-	logGrp.Do(fSf("local log file @ [%s]", Cfg.Log))
-	logGrp.Do(fSf("[%s] Hosting on: [%v:%d], version [%v]", service, localIP(), ws.Port, Cfg.Version))
+	logGrp.Do(fSf("[%s] Hosting on: [%v:%d], version [%v]", service, localIP(), ws.Port, gCfg.Version))
 
 	// Start Service
 	done := make(chan string)
@@ -128,11 +142,11 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 	e.Logger.Infof(" ------------------------ e.Logger.Infof ------------------------ ")
 
 	var (
-		Cfg    = rflx.Env2Struct("Config", &cfg.Config{}).(*cfg.Config)
-		port   = Cfg.WebService.Port
+		// Cfg    = rflx.Env2Struct("Config", &cfg.Config{}).(*cfg.Config)
+		port   = gCfg.WebService.Port
 		fullIP = localIP() + fSf(":%d", port)
-		route  = Cfg.Route
-		mMtx   = initMutex(&Cfg.Route)
+		route  = gCfg.Route
+		mMtx   = initMutex(&gCfg.Route)
 		vers   = sr.GetAllVer("v", "")
 	)
 
@@ -147,25 +161,22 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		mMtx[path].Lock()
 
 		return c.String(http.StatusOK,
-			// fSf("wget %-55s-> %s\n", fullIP+"/client-linux64", "Get Client(Linux64)")+
-			// 	fSf("wget %-55s-> %s\n", fullIP+"/client-mac", "Get Client(Mac)")+
-			// 	fSf("wget %-55s-> %s\n", fullIP+"/client-win64", "Get Client(Windows64)")+
-			// 	fSf("wget -O config.toml %-40s-> %s\n", fullIP+"/client-config", "Get Client Config")+
-			// 	fSf("\n")+
-			fSf("[POST] %-40s\n%s", fullIP+route.Convert,
-				"--- Upload SIF(XML), return SIF(JSON)\n"+
-					"------ [sv]:   SIF Ver "+fSf("%v", vers)+"\n"+
-					"------ [nats]: send json to NATS\n"+
-					"------ [wrap]: if uploaded SIF file is single root wrapped"))
+			fSf("Converter Server Version: %s\n\n", gCfg.Version)+
+				fSf("API:\n\n [POST] %-40s\n%s", fullIP+route.Convert,
+					"\n Description: Upload SIF(XML), return SIF(JSON)\n"+
+						"\n Parameters:"+
+						"\n -- [sv]:   available SIF Ver: "+fSf("%v", vers)+
+						"\n -- [nats]: send json to NATS?"+
+						"\n -- [wrap]: is uploaded SIF file with single wrapped root?"))
 	})
 
 	// ------------------------------------------------------------------------------------ //
 
 	// mRouteRes := map[string]string{
-	// 	"/client-linux64": Cfg.File.ClientLinux64,
-	// 	"/client-mac":     Cfg.File.ClientMac,
-	// 	"/client-win64":   Cfg.File.ClientWin64,
-	// 	"/client-config":  Cfg.File.ClientConfig,
+	// 	"/client-linux64": gCfg.File.ClientLinux64,
+	// 	"/client-mac":     gCfg.File.ClientMac,
+	// 	"/client-win64":   gCfg.File.ClientWin64,
+	// 	"/client-config":  gCfg.File.ClientConfig,
 	// }
 
 	// routeFun := func(rt, res string) func(c echo.Context) error {
@@ -307,7 +318,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 
 			// Send a copy to NATS
 			if msg {
-				url, subj, timeout := Cfg.NATS.URL, Cfg.NATS.Subject, time.Duration(Cfg.NATS.Timeout)
+				url, subj, timeout := gCfg.NATS.URL, gCfg.NATS.Subject, time.Duration(gCfg.NATS.Timeout)
 				nc, err := nats.Connect(url)
 				if err != nil {
 					status = http.StatusInternalServerError

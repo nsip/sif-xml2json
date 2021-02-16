@@ -10,9 +10,9 @@ type Config struct {
 		Help string
 	}
 	Server struct {
-		Protocol string
 		IP string
 		Port int
+		Protocol string
 	}
 	Access struct {
 		Timeout int
