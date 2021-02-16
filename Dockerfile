@@ -55,7 +55,7 @@
 ############################
 # STEP 1 build executable binary (go.mod version)
 ############################
-FROM golang:1.15.3-alpine3.12 as builder
+FROM golang:1.15.8-alpine3.12 as builder
 RUN apk add --no-cache ca-certificates
 RUN apk update && apk add --no-cache git bash
 RUN mkdir -p /sif-xml2json

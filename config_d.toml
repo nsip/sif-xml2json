@@ -1,29 +1,21 @@
-Log = "~/.[s]/log/[DATE].log"
-Service = "[PRJ]"
-Version = "[VER]"
+Service = "sif-xml2json"
+Version = "v0.1.7"
 
 [SIF]
-DefaultVer = "3.4.7"
+  DefaultVer = "3.4.7"
 
 [Loggly]
-Token = "54290728-93e0-425a-a49c-c9e834288026"
+  Token = "54290728-93e0-425a-a49c-c9e834288026"
 
 [WebService]
-Port = 1324
+  Port = 1324
 
 [Route]
-Convert = "/[s]/[v]/convert"
-Help = "/"
+  Convert = "/sif-xml2json/convert"
+  Help = "/"
 
 [NATS]
-Subject = "SIF-XML2JSON"
-Timeout = 500
-URL = "nats://192.168.78.130:4222"
+  URL = "nats://192.168.78.130:4222"
+  Subject = "SIF-XML2JSON"
+  Timeout = 500
 
-[Server]
-IP = "[IP]"
-Port = "[port]"
-Protocol = "http"
-
-[Access]
-Timeout = 10

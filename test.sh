@@ -9,8 +9,8 @@ W=`tput sgr0`
 
 printf "\n"
 
-ip="localhost:1324/"          ###
-base=$ip"sif-xml2json/v0.1.5" ###
+ip="localhost:1324/"             ### [port]
+base=$ip"sif-xml2json/convert" 
 
 title='SIF-XML2JSON all API Paths'
 url=$ip
@@ -29,7 +29,7 @@ printf "\n"
 
 sv=3.4.8.draft
 
-SIFXFile=./data/examples/StudentPersonals.xml ###
+SIFXFile=./data/examples/siftest.xml ### StudentPersonals.xml
 title='Convert Test @ '$SIFXFile
 url=$base"?sv=$sv&wrap"   ###
 file="@"$SIFXFile
