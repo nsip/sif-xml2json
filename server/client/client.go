@@ -3,7 +3,7 @@ package client
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"time"
 
@@ -123,7 +123,7 @@ func rest(fn, url string, args *Args, chStr chan string, chErr chan error) {
 	}
 	defer Resp.Body.Close()
 
-	if Ret, Err = ioutil.ReadAll(Resp.Body); Err != nil {
+	if Ret, Err = io.ReadAll(Resp.Body); Err != nil {
 		goto ERR_RET
 	}
 

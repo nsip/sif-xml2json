@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"os/signal"
@@ -52,6 +52,17 @@ var (
 )
 
 func main() {
+	// Running Executable, Single instance
+	// if len(os.Args) == 1 {
+	// 	one, err := single.New("sif-xml2json", single.WithLockPath("/tmp"))
+	// 	failOnErr("%v", err)
+	// 	failOnErr("%v", one.Lock())
+	// 	defer func() {
+	// 		failOnErr("%v", one.Unlock())
+	// 		fPln("SIF-XML2JSON SERVER EXIT")
+	// 	}()
+	// }
+
 	// Load global config.toml file from config/
 	gonfig.SetDftCfgVal("sif-xml2json", "0.0.0")
 	pCfg := cfg.NewCfg(
@@ -68,7 +79,7 @@ func main() {
 	gCfg = pCfg.(*cfg.Config)
 
 	// Trim a shorter config toml file for docker & client package
-	if len(os.Args) > 2 && os.Args[2] == "trial" {
+	if len(os.Args) > 2 && os.Args[2] == "trial" { // Args[1] == "--"
 		mkCfg4Docker(gCfg)
 		mkCfg4Clt(gCfg)
 		return
@@ -222,7 +233,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		}
 
 		logGrp.Do("Reading Request Body")
-		bytes, err := ioutil.ReadAll(c.Request().Body)
+		bytes, err := io.ReadAll(c.Request().Body)
 		xstr, root, cont, lvl0 := "", "", "", ""
 		xmlObjNames, xmlObjGrp, mObjContGrp := []string{}, []string{}, make(map[string][]string)
 
@@ -247,7 +258,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 
 		/// DEBUG ///
 		// if sContains(xstr, "A5A575C7-8917-5101-B8E7-F08ED123A823") {
-		// 	ioutil.WriteFile("./debug.xml", []byte(xstr), 0666)
+		// 	os.WriteFile("./debug.xml", []byte(xstr), 0666)
 		// }
 		/// DEBUG ///
 
@@ -275,7 +286,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 
 			/// DEBUG ///
 			// if sContains(obj, "Document") {
-			// 	ioutil.WriteFile("./debug.xml", []byte(xmlObj), 0666)
+			// 	os.WriteFile("./debug.xml", []byte(xmlObj), 0666)
 			// }
 			/// DEBUG ///
 

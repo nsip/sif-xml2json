@@ -1,5 +1,5 @@
 Service = "sif-xml2json"
-Version = "v0.1.7"
+Version = "v0.1.8"
 
 [SIF]
   DefaultVer = "3.4.7"
@@ -15,7 +15,7 @@ Version = "v0.1.7"
   Help = "/"
 
 [NATS]
+  Timeout = 500
   URL = "nats://192.168.78.130:4222"
   Subject = "SIF-XML2JSON"
-  Timeout = 500
 

@@ -21,9 +21,9 @@ type Config struct {
 		Help string
 	}
 	NATS struct {
+		Timeout int
 		URL string
 		Subject string
-		Timeout int
 	}
 	Server struct {
 		IP interface{}

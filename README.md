@@ -37,6 +37,7 @@ Note: A default starting configuration for the server is provided in config.toml
    `./sifxml2json`
 
    On startup, you should see output messages printed such as service name, server IP:Port and service version:
+   `IP`, `port`, `service name` and `version` are important for client access:
 
    ![1 Start service](screenshots/1_start_service.png)
 
@@ -83,7 +84,8 @@ On Windows, if you don't have curl, you can copy it from your Windows system fol
 
 ## Notes
 
-* If sifxml2json is being run remotely, set the URL `localhost` to the machine's IP address .
+* If sifxml2json is being run remotely, set the URL `localhost` to the machine's IP address.
+* You can modify `port`, `service name` and `service version` in config.toml.
 * The SIF version parameter (URL param `sv`)can be set to the supported SIF data model versions '3.4.2', '3.4.3' ... '3.4.8.draft'.
 * Wrapper parameter (URL param `wrap`): if there is a (non-SIF-object) single wrapper root in the XML file you wish to covert, add the `wrap` parameter.
 
