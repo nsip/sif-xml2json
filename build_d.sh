@@ -1,8 +1,11 @@
 #!/bin/bash
-rm -f ./go.sum
-go get -u ./...
+# rm -f ./go.sum
+# go get -u ./...
 
-oripath=`pwd`
+ORIPATH=`pwd`
 
-cd ./config && ./build_d.sh && cd $oripath && echo "config prepared"
-cd ./server && ./build_d.sh && cd $oripath && echo "server building done"
+cd ./config && ./build_d.sh && cd "$ORIPATH" 
+echo "config prepared"
+
+cd ./server && ./build_d.sh && cd "$ORIPATH" 
+echo "server building done"

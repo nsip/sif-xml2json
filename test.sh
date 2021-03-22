@@ -27,7 +27,7 @@ printf "\n"
 
 # exit 0
 
-sv=3.4.8.draft
+sv=3.4.8
 
 SIFXFile=./data/examples/siftest.xml ### StudentPersonals.xml
 title='Convert Test @ '$SIFXFile
@@ -69,7 +69,7 @@ echo "${G}Done${W}"
 
 # # exit 0
 
-# sv=3.4.7
+# sv=3.4.8
 
 # SIFDir=./data/examples/$sv/*
 # for f in $SIFDir

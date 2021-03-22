@@ -1,7 +1,6 @@
 package cvt2json
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
@@ -11,7 +10,7 @@ import (
 )
 
 func TestXMLRoot(t *testing.T) {
-	bytes, err := ioutil.ReadFile("../data/examples/3.4.7/Activity_0.xml")
+	bytes, err := os.ReadFile("../data/examples/3.4.8/Activity_0.xml")
 	failOnErr("%v", err)
 	fPln(xmlRoot(string(bytes)))
 }
@@ -29,7 +28,7 @@ func x2j(dim int, tid int, done chan int, params ...interface{}) {
 		// if exist(obj, "LearningStandardDocument", "StudentAttendanceTimeList") {
 		// 	continue
 		// }
-		bytes, err := ioutil.ReadFile(filepath.Join(dir, files[i].Name()))
+		bytes, err := os.ReadFile(filepath.Join(dir, files[i].Name()))
 		failOnErr("%v", err)
 		json, sv, err := XML2JSON(string(bytes), ver, false)
 		fPln("end:", obj, sv, err)
@@ -46,9 +45,9 @@ func TestXML2JSON(t *testing.T) {
 	// defer enableWarnDetail(true)
 	enableWarnDetail(false)
 
-	ver := "3.4.7"
+	ver := "3.4.8"
 	dir := `../data/examples/` + ver
-	files, err := ioutil.ReadDir(dir)
+	files, err := os.ReadDir(dir)
 	failOnErr("%v", err)
 	failOnErrWhen(len(files) == 0, "%v", errs.FILE_NOT_FOUND)
 	syncParallel(1, x2j, files, dir, ver) // multi threads may be error.

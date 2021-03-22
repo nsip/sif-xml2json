@@ -11,7 +11,7 @@ import (
 	sif345 "github.com/nsip/sif-spec-res/3.4.5"
 	sif346 "github.com/nsip/sif-spec-res/3.4.6"
 	sif347 "github.com/nsip/sif-spec-res/3.4.7"
-	sif348draft "github.com/nsip/sif-spec-res/3.4.8.draft"
+	sif348 "github.com/nsip/sif-spec-res/3.4.8"
 )
 
 func selBytesOfJSON(ver, ruleType, object string, indices ...int) (rt []string, err error) {
@@ -72,14 +72,14 @@ func selBytesOfJSON(ver, ruleType, object string, indices ...int) (rt []string, 
 		case "num", "number", "numeric":
 			mBytes = sif347.JSON_NUM
 		}
-	case "3.4.8.draft":
+	case "3.4.8":
 		switch sToLower(ruleType) {
 		case "bool", "boolean":
-			mBytes = sif348draft.JSON_BOOL
+			mBytes = sif348.JSON_BOOL
 		case "list":
-			mBytes = sif348draft.JSON_LIST
+			mBytes = sif348.JSON_LIST
 		case "num", "number", "numeric":
-			mBytes = sif348draft.JSON_NUM
+			mBytes = sif348.JSON_NUM
 		}
 	default:
 		err = fmt.Errorf("Error: No SIF Spec @ Version [%s]", ver)

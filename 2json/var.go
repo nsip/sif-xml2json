@@ -9,7 +9,6 @@ import (
 	"github.com/cdutwhu/gotil/dispatcher"
 	"github.com/cdutwhu/gotil/io"
 	"github.com/cdutwhu/gotil/iter"
-	"github.com/cdutwhu/gotil/judge"
 	"github.com/cdutwhu/gotil/misc"
 	"github.com/cdutwhu/gotil/net"
 	"github.com/cdutwhu/gotil/str"
@@ -49,7 +48,6 @@ var (
 	syncParallel     = dispatcher.SyncParallel
 	iter2Slc         = iter.Iter2Slc
 	mustWriteFile    = io.MustWriteFile
-	exist            = judge.Exist
 	trackTime        = misc.TrackTime
 	xmlRoot          = xt.Root
 	jsonRoot         = jt.Root
