@@ -17,6 +17,7 @@ import (
 	"github.com/cdutwhu/gotil/misc"
 	jt "github.com/cdutwhu/json-tool"
 	xt "github.com/cdutwhu/xml-tool"
+	"github.com/digisan/gotk/slice/ts"
 	"github.com/labstack/echo-contrib/jaegertracing"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -27,6 +28,16 @@ import (
 	errs "github.com/nsip/sif-xml2json/err-const"
 	// "github.com/postfinance/single"
 )
+
+var allSIF = []string{
+	"3.4.2",
+	"3.4.3",
+	"3.4.4",
+	"3.4.5",
+	"3.4.6",
+	"3.4.7",
+	"3.4.8",
+}
 
 func mkCfg4Clt(cfg interface{}) {
 	forel := "./config_rel.toml"
@@ -160,6 +171,12 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		vers   = sr.GetAllVer("v", "")
 	)
 
+	// prepare for inferring 'wrapped'
+	mAllObj := make(map[string][]string)
+	for _, v := range allSIF {
+		mAllObj[v], _ = cvt.AllSIFObject(v)
+	}
+
 	defer e.Start(fSf(":%d", port))
 	logGrp.Do("Echo Service is Starting ...")
 
@@ -270,6 +287,11 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		///
 		root, lvl0, cont = xt.Lvl0(xstr)
 		xmlObjNames, xmlObjGrp = []string{root}, []string{xstr}
+
+		// for inferring wrapped when wrap is not provided
+		if !wrapped {
+			wrapped = ts.NotIn(root, mAllObj[sv]...)
+		}
 
 		if wrapped {
 			xmlObjNames, xmlObjGrp = xt.BreakCont(cont)

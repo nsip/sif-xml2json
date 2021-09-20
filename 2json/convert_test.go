@@ -1,6 +1,7 @@
 package cvt2json
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
@@ -52,4 +53,20 @@ func TestXML2JSON(t *testing.T) {
 	failOnErrWhen(len(files) == 0, "%v", errs.FILE_NOT_FOUND)
 	syncParallel(1, x2j, files, dir, ver) // multi threads may be error.
 	fPln("OK")
+}
+
+func TestBytesOfTXT(t *testing.T) {
+	ret, err := BytesOfTXT("3.4.8")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(ret)
+}
+
+func TestAllSIFObject(t *testing.T) {
+	objs, err := AllSIFObject("3.4.8")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(len(objs), objs)
 }

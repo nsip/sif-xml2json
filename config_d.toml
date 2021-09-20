@@ -1,5 +1,5 @@
 Service = "sif-xml2json"
-Version = "v0.1.8"
+Version = "v0.1.9"
 
 [SIF]
   DefaultVer = "3.4.8"
@@ -11,8 +11,8 @@ Version = "v0.1.8"
   Port = 1324
 
 [Route]
-  Help = "/"
   Convert = "/sif-xml2json/convert"
+  Help = "/"
 
 [NATS]
   Subject = "SIF-XML2JSON"

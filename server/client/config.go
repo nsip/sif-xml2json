@@ -2,12 +2,12 @@ package client
 
 import "github.com/cdutwhu/gonfig"
 
-// Config : AUTO Created From /sif-xml2json/server/client/config.toml
+// Config : AUTO Created From "sif-xml2json/server/client/config.toml"
 type Config struct {
 	Service string
 	Route struct {
-		Help string
 		Convert string
+		Help string
 	}
 	Server struct {
 		Protocol string

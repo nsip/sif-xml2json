@@ -5,7 +5,6 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/cdutwhu/debog/fn"
 	"github.com/cdutwhu/gotil/dispatcher"
 	"github.com/cdutwhu/gotil/io"
 	"github.com/cdutwhu/gotil/iter"
@@ -15,6 +14,7 @@ import (
 	jt "github.com/cdutwhu/json-tool"
 	"github.com/cdutwhu/n3-util/jkv"
 	xt "github.com/cdutwhu/xml-tool"
+	"github.com/digisan/logkit"
 )
 
 var (
@@ -33,12 +33,12 @@ var (
 	sNewReader       = strings.NewReader
 	sJoin            = strings.Join
 	rxMustCompile    = regexp.MustCompile
-	failOnErr        = fn.FailOnErr
-	enableLog2F      = fn.EnableLog2F
-	failOnErrWhen    = fn.FailOnErrWhen
-	enableWarnDetail = fn.EnableWarnDetail
-	warnOnErr        = fn.WarnOnErr
-	warner           = fn.Warner
+	failOnErr        = logkit.FailOnErr
+	enableLog2F      = logkit.Log2F
+	failOnErrWhen    = logkit.FailOnErrWhen
+	enableWarnDetail = logkit.WarnDetail
+	warnOnErr        = logkit.WarnOnErr
+	warner           = logkit.Warn
 	localIP          = net.LocalIP
 	splitRev         = str.SplitRev
 	replByPosGrp     = str.ReplByPosGrp

@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/cdutwhu/debog/fn"
 	"github.com/cdutwhu/gotil/io"
 	"github.com/cdutwhu/gotil/judge"
 	"github.com/cdutwhu/gotil/rflx"
+	"github.com/digisan/logkit"
 	"github.com/opentracing/opentracing-go"
 	"github.com/uber/jaeger-client-go/config"
 )
@@ -25,12 +25,12 @@ var (
 	mapKeys       = rflx.MapKeys
 	env2Struct    = rflx.Env2Struct
 	struct2Env    = rflx.Struct2Env
-	enableLog2F   = fn.EnableLog2F
-	failOnErrWhen = fn.FailOnErrWhen
-	failOnErr     = fn.FailOnErr
-	logWhen       = fn.LoggerWhen
-	warnOnErr     = fn.WarnOnErr
-	warnOnErrWhen = fn.WarnOnErrWhen
+	enableLog2F   = logkit.Log2F
+	failOnErrWhen = logkit.FailOnErrWhen
+	failOnErr     = logkit.FailOnErr
+	logWhen       = logkit.LogWhen
+	warnOnErr     = logkit.WarnOnErr
+	warnOnErrWhen = logkit.WarnOnErrWhen
 	isXML         = judge.IsXML
 	isJSON        = judge.IsJSON
 	mustWriteFile = io.MustWriteFile

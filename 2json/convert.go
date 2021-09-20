@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	xj "github.com/basgys/goxml2json"
-	cfg "github.com/nsip/sif-xml2json/config/cfg"
+	"github.com/digisan/gotk/io"
 	sif342 "github.com/nsip/sif-spec-res/3.4.2"
 	sif343 "github.com/nsip/sif-spec-res/3.4.3"
 	sif344 "github.com/nsip/sif-spec-res/3.4.4"
@@ -12,9 +12,51 @@ import (
 	sif346 "github.com/nsip/sif-spec-res/3.4.6"
 	sif347 "github.com/nsip/sif-spec-res/3.4.7"
 	sif348 "github.com/nsip/sif-spec-res/3.4.8"
+	cfg "github.com/nsip/sif-xml2json/config/cfg"
 )
 
-func selBytesOfJSON(ver, ruleType, object string, indices ...int) (rt []string, err error) {
+func AllSIFObject(ver string) (objs []string, err error) {
+	txt, err := BytesOfTXT(ver)
+	if err != nil {
+		return nil, err
+	}
+	const pfx = "OBJECT: "
+	p := len(pfx)
+	objstr, err := io.StrLineScan(txt, func(line string) (bool, string) {
+		if sHasPrefix(line, pfx) {
+			return true, line[p:]
+		}
+		return false, ""
+	}, "")
+	return sSplit(objstr, "\n"), err
+}
+
+func BytesOfTXT(ver string) (ret string, err error) {
+	var mBytes map[string][]byte
+	switch ver {
+	case "3.4.2":
+		mBytes = sif342.TXT
+	case "3.4.3":
+		mBytes = sif343.TXT
+	case "3.4.4":
+		mBytes = sif344.TXT
+	case "3.4.5":
+		mBytes = sif345.TXT
+	case "3.4.6":
+		mBytes = sif346.TXT
+	case "3.4.7":
+		mBytes = sif347.TXT
+	case "3.4.8":
+		mBytes = sif348.TXT
+	default:
+		err = fmt.Errorf("error: No SIF Spec @ Version [%s]", ver)
+		warner("%v", err)
+		return
+	}
+	return string(mBytes[sReplaceAll(ver, ".", "")]), err
+}
+
+func BytesOfJSON(ver, ruleType, object string, indices ...int) (ret []string, err error) {
 
 	var mBytes map[string][]byte
 	switch ver {
@@ -90,7 +132,7 @@ func selBytesOfJSON(ver, ruleType, object string, indices ...int) (rt []string, 
 	for _, idx := range indices {
 		key := fSf("%s_%d", object, idx)
 		if bytes, ok := mBytes[key]; ok {
-			rt = append(rt, string(bytes))
+			ret = append(ret, string(bytes))
 		}
 	}
 	return
@@ -151,17 +193,17 @@ func XML2JSON(xml, sifver string, enforced bool, subobj ...string) (string, stri
 		ver = sifver
 	}
 
-	if rt, err := selBytesOfJSON(ver, "list", obj, iter2Slc(10)...); err == nil {
+	if rt, err := BytesOfJSON(ver, "list", obj, iter2Slc(10)...); err == nil {
 		json = enforceCfg(json, rt...)
 	} else {
 		return "", "", err
 	}
-	if rt, err := selBytesOfJSON(ver, "num", obj, iter2Slc(2)...); err == nil {
+	if rt, err := BytesOfJSON(ver, "num", obj, iter2Slc(2)...); err == nil {
 		json = enforceCfg(json, rt...)
 	} else {
 		return "", "", err
 	}
-	if rt, err := selBytesOfJSON(ver, "bool", obj, iter2Slc(2)...); err == nil {
+	if rt, err := BytesOfJSON(ver, "bool", obj, iter2Slc(2)...); err == nil {
 		json = enforceCfg(json, rt...)
 	} else {
 		return "", "", err

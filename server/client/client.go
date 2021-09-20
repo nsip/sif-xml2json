@@ -45,8 +45,9 @@ func DO(config, fn string, args *Args) (string, error) {
 
 	mFnURL, fields := initMapFnURL(protocol, ip, port, &Cfg.Route)
 	url, ok := mFnURL[fn]
-	if err := warnOnErrWhen(!ok, "%v: Need %v", errs.PARAM_NOT_SUPPORTED, fields); err != nil {
-		return "", err
+	if !ok {
+		warnOnErrWhen(!ok, "%v: Need %v", errs.PARAM_NOT_SUPPORTED, fields)
+		return "", errs.PARAM_NOT_SUPPORTED
 	}
 
 	chStr, chErr := make(chan string), make(chan error)
@@ -56,7 +57,8 @@ func DO(config, fn string, args *Args) (string, error) {
 
 	select {
 	case <-time.After(time.Duration(timeout) * time.Second):
-		return "", warnOnErr("%v: Didn't get response in %d(s)", errs.NET_TIMEOUT, timeout)
+		warnOnErr("%v: Didn't get response in %d(s)", errs.NET_TIMEOUT, timeout)
+		return "", errs.NET_TIMEOUT
 	case str := <-chStr:
 		err := <-chErr
 		if err == errs.NO_ERROR {
