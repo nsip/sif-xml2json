@@ -11,7 +11,7 @@ import (
 )
 
 func TestXMLRoot(t *testing.T) {
-	bytes, err := os.ReadFile("../data/examples/3.4.8/Activity_0.xml")
+	bytes, err := os.ReadFile("../data/examples/3.4.9/Activity_0.xml")
 	failOnErr("%v", err)
 	fPln(xmlRoot(string(bytes)))
 }
@@ -46,7 +46,7 @@ func TestXML2JSON(t *testing.T) {
 	// defer enableWarnDetail(true)
 	enableWarnDetail(false)
 
-	ver := "3.4.8"
+	ver := "3.4.9"
 	dir := `../data/examples/` + ver
 	files, err := os.ReadDir(dir)
 	failOnErr("%v", err)
@@ -56,7 +56,7 @@ func TestXML2JSON(t *testing.T) {
 }
 
 func TestBytesOfTXT(t *testing.T) {
-	ret, err := BytesOfTXT("3.4.8")
+	ret, err := BytesOfTXT("3.4.9")
 	if err != nil {
 		panic(err)
 	}
@@ -64,7 +64,7 @@ func TestBytesOfTXT(t *testing.T) {
 }
 
 func TestAllSIFObject(t *testing.T) {
-	objs, err := AllSIFObject("3.4.8")
+	objs, err := AllSIFObject("3.4.9")
 	if err != nil {
 		panic(err)
 	}

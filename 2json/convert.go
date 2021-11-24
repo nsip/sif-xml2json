@@ -12,6 +12,7 @@ import (
 	sif346 "github.com/nsip/sif-spec-res/3.4.6"
 	sif347 "github.com/nsip/sif-spec-res/3.4.7"
 	sif348 "github.com/nsip/sif-spec-res/3.4.8"
+	sif349 "github.com/nsip/sif-spec-res/3.4.9"
 	cfg "github.com/nsip/sif-xml2json/config/cfg"
 )
 
@@ -48,6 +49,8 @@ func BytesOfTXT(ver string) (ret string, err error) {
 		mBytes = sif347.TXT
 	case "3.4.8":
 		mBytes = sif348.TXT
+	case "3.4.9":
+		mBytes = sif349.TXT
 	default:
 		err = fmt.Errorf("error: No SIF Spec @ Version [%s]", ver)
 		warner("%v", err)
@@ -122,6 +125,15 @@ func BytesOfJSON(ver, ruleType, object string, indices ...int) (ret []string, er
 			mBytes = sif348.JSON_LIST
 		case "num", "number", "numeric":
 			mBytes = sif348.JSON_NUM
+		}
+	case "3.4.9":
+		switch sToLower(ruleType) {
+		case "bool", "boolean":
+			mBytes = sif349.JSON_BOOL
+		case "list":
+			mBytes = sif349.JSON_LIST
+		case "num", "number", "numeric":
+			mBytes = sif349.JSON_NUM
 		}
 	default:
 		err = fmt.Errorf("Error: No SIF Spec @ Version [%s]", ver)
@@ -230,7 +242,7 @@ func XML2JSON(xml, sifver string, enforced bool, subobj ...string) (string, stri
 		}
 		emptyPosPair = append(emptyPosPair, []int{pos[0] + offset, pos[0] + offset})
 	}
-	const mark = "value" // "#content"
+	const mark = "#content" // "value"
 	json = replByPosGrp(json, emptyPosPair, []string{fSf("\"%s\": \"\",\n", mark)})
 
 	// "-Attribute" => "@Attribute"
@@ -239,5 +251,14 @@ func XML2JSON(xml, sifver string, enforced bool, subobj ...string) (string, stri
 	})
 
 	json = fmtJSON(json, "  ")
+
+	///////////////////////////////////
+	// TO PESC
+
+	
+
+
+	///////////////////////////////////
+
 	return json, ver, nil
 }

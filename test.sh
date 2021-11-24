@@ -27,11 +27,11 @@ printf "\n"
 
 # exit 0
 
-sv=3.4.8
+sv=3.4.9
 
-SIFXFile=./data/examples/siftest.xml ### StudentPersonals.xml
+SIFXFile=./data/examples/siftest.xml ###  StudentPersonals.xml
 title='Convert Test @ '$SIFXFile
-url=$base"?sv=$sv&wrap"   ###
+url=$base"?sv=$sv&wrap&pesc"   ###
 file="@"$SIFXFile
 scode=`curl -X POST $url --data-binary $file -w "%{http_code}" -s -o /dev/null`
 if [ $scode -ne 200 ]; then
@@ -69,7 +69,7 @@ echo "${G}Done${W}"
 
 # # exit 0
 
-# sv=3.4.8
+# sv=3.4.9
 
 # SIFDir=./data/examples/$sv/*
 # for f in $SIFDir

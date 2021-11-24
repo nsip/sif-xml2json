@@ -3,6 +3,7 @@ package main
 import (
 	"testing"
 
+	"github.com/cdutwhu/gotil/rflx"
 	"github.com/davecgh/go-spew/spew"
 	cfg "github.com/nsip/sif-xml2json/config/cfg"
 )
@@ -35,6 +36,6 @@ func TestInit(t *testing.T) {
 	).(*cfg.Config)
 	spew.Dump(*c)
 
-	c = env2Struct("Config", &cfg.Config{}).(*cfg.Config)
+	c = rflx.Env2Struct("Config", &cfg.Config{}).(*cfg.Config)
 	spew.Dump(*c)
 }

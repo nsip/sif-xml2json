@@ -3,7 +3,7 @@ Service = "[PRJ]"
 Version = "[VER]"
 
 [SIF]
-DefaultVer = "3.4.8"
+DefaultVer = "3.4.9"
 
 [Loggly]
 Token = "54290728-93e0-425a-a49c-c9e834288026"

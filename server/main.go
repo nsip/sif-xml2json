@@ -22,7 +22,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/nats-io/nats.go"
-	sr "github.com/nsip/sif-spec-res"
+	sr "github.com/nsip/sif-spec-res/tool"
 	cvt "github.com/nsip/sif-xml2json/2json"
 	cfg "github.com/nsip/sif-xml2json/config/cfg"
 	errs "github.com/nsip/sif-xml2json/err-const"
@@ -37,6 +37,7 @@ var allSIF = []string{
 	"3.4.6",
 	"3.4.7",
 	"3.4.8",
+	"3.4.9",
 }
 
 func mkCfg4Clt(cfg interface{}) {
@@ -237,7 +238,7 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		)
 
 		logGrp.Do("Parsing Params")
-		pvalues, sv, msg, wrapped := c.QueryParams(), "", false, false
+		pvalues, sv, msg, wrapped, pesc := c.QueryParams(), "", false, false, false
 		if ok, v := url1Value(pvalues, 0, "sv"); ok {
 			sv = v
 		}
@@ -246,6 +247,9 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 		}
 		if ok, w := url1Value(pvalues, 0, "wrap"); ok && w != "false" {
 			wrapped = true
+		}
+		if ok, p := url1Value(pvalues, 0, "pesc"); ok && p != "false" {
+			pesc = true
 		}
 
 		logGrp.Do("Reading Request Body")
@@ -393,9 +397,16 @@ func HostHTTPAsync(sig <-chan os.Signal, done chan<- string) {
 			} else {
 				Ret = RetSB.String()
 			}
-			logGrp.Do("--> Finish XML2JSON")
+			logGrp.Do("--> Finish XML2JSON Goessner")
 		}
 
-		return c.String(status, sTrimRight(Ret, "\n")+"\n") // If already JSON String, so return String
+		Ret = sTrimRight(Ret, "\n")
+
+		if pesc {
+			Ret = cvt.Cvt2Pesc(Ret, "./temp.json")
+			logGrp.Do("--> Finish XML2JSON PESC")
+		}
+
+		return c.String(status, Ret+"\n") // If already JSON String, return String
 	})
 }
